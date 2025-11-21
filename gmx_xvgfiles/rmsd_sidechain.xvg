@@ -1,0 +1,29 @@
+# This file was created Tue Nov 18 11:10:13 2025
+# Created by:
+#                       :-) GROMACS - gmx rms, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx rms -s run.tpr -f traj_fit.xtc -o rmsd_sidechain.xvg -tu ns
+# gmx rms is part of G R O M A C S:
+#
+# God Rules Over Mankind, Animals, Cosmos and Such
+#
+@    title "RMSD"
+@    xaxis  label "Time (ns)"
+@    yaxis  label "RMSD (nm)"
+@TYPE xy
+@ subtitle "SideChain after lsq fit to Protein"
+   0.0000000    0.0005041
+   1.0000000    0.2734821
+   2.0000000    0.2577310
+   3.0000002    0.2265422
+   4.0000000    0.2167119
+   5.0000000    0.2439373
+   6.0000005    0.2264581
+   7.0000005    0.2225511
+   8.0000000    0.1744625
+   9.0000000    0.1924294
+  10.0000000    0.1913652

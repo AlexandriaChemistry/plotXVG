@@ -1,0 +1,7 @@
+Description:
+A custom choice of colors. Colors defined by the user will be applied to the datasets in order. 
+If there are more datasets than color inputs, default colors will be used.
+File(s) used:
+gmx_xvgfiles/intra_energies.xvg
+Command:
+python plotxvg -f gmx_xvgfiles/intra_energies.xvg -colors green purple red -save plotXVG_output/08colors.pdf -noshow

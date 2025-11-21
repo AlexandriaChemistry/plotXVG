@@ -1,0 +1,29 @@
+# This file was created Tue Nov 18 11:11:50 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx rmsf -s run.tpr -f traj_fit.xtc -o rmsf_residues.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# GRoups of Organic Molecules in ACtion for Science
+#
+@    title "RMS fluctuation residues 66-76"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@    s0 legend "* 0.8"
+@TYPE xy
+   66   0.04608
+   67   0.03552
+   68   0.03456
+   69   0.04136
+   70   0.0536
+   71   0.06032
+   72   0.08048
+   73   0.09296
+   74   0.17672
+   75   0.3056
+   76   0.45592

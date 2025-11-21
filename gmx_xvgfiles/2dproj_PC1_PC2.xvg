@@ -1,0 +1,28 @@
+# This file was created Tue Nov 18 14:13:00 2025
+# Created by:
+#                      :-) GROMACS - gmx anaeig, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx anaeig -v eigenvec.trr -s run.tpr -f traj_fit.xtc -2d 2dproj_PC1_PC2.xvg -first 1 -last 2
+# gmx anaeig is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "2D projection of trajectory"
+@    xaxis  label "projection on eigenvector 1 (nm)"
+@    yaxis  label "projection on eigenvector 2 (nm)"
+@TYPE xy
+   2.16658   -0.69846
+  -1.11646   -1.12903
+  -0.45660   -0.33302
+  -1.18481    0.58506
+  -0.58407    0.76026
+  -0.67318   -0.85875
+  -0.42201   -0.29142
+  -1.10085    0.27778
+   2.02210    0.08760
+   1.07789    0.28676
+   0.27141    1.31323

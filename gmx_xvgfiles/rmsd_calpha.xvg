@@ -1,0 +1,29 @@
+# This file was created Tue Nov 18 11:08:03 2025
+# Created by:
+#                       :-) GROMACS - gmx rms, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx rms -s run.tpr -f traj_fit.xtc -o rmsd_calpha.xvg -tu ns
+# gmx rms is part of G R O M A C S:
+#
+# Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+#
+@    title "RMSD"
+@    xaxis  label "Time (ns)"
+@    yaxis  label "RMSD (nm)"
+@TYPE xy
+@ subtitle "C-alpha after lsq fit to Protein"
+   0.0000000    0.0005033
+   1.0000000    0.2423191
+   2.0000000    0.2001119
+   3.0000002    0.2554222
+   4.0000000    0.2216710
+   5.0000000    0.2135310
+   6.0000005    0.1994240
+   7.0000005    0.2422280
+   8.0000000    0.0922685
+   9.0000000    0.1346501
+  10.0000000    0.2014346
