@@ -1,0 +1,27 @@
+# This file was created Tue Nov 18 11:57:14 2025
+# Created by:
+#                      :-) GROMACS - gmx covar, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx covar -s run.tpr -f traj_fit.xtc -o eigenval.xvg -v eigenvec.trr
+# gmx covar is part of G R O M A C S:
+#
+# GROtesk MACabre and Sinister
+#
+@    title "Eigenvalues of the covariance matrix"
+@    xaxis  label "Eigenvector index"
+@    yaxis  label "(nm\S2\N)"
+@TYPE xy
+         1 1.36922
+         2 0.500707
+         3 0.17472
+         4 0.119003
+         5 0.0760604
+         6 0.070323
+         7 0.0551884
+         8 0.0486875
+         9 0.0401758
+        10 0.0273209

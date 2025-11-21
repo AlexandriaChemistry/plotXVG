@@ -1,0 +1,6 @@
+Description:
+One file containing five datasets, without any flags added (will thus be plotted using markers).
+File(s) used:
+modified_xvgfiles/ammonium#chloride.xvg
+Command:
+python plotxvg -f modified_xvgfiles/ammonium#chloride.xvg  -save plotXVG_output/02markers_5datasets.pdf -noshow

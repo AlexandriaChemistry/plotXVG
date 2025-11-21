@@ -1,0 +1,29 @@
+# This file was created Tue Nov 18 11:07:32 2025
+# Created by:
+#                       :-) GROMACS - gmx rms, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx rms -s run.tpr -f traj_fit.xtc -o rmsd_backbone.xvg -tu ns
+# gmx rms is part of G R O M A C S:
+#
+# GROningen Mixture of Alchemy and Childrens' Stories
+#
+@    title "RMSD"
+@    xaxis  label "Time (ns)"
+@    yaxis  label "RMSD (nm)"
+@TYPE xy
+@ subtitle "Backbone after lsq fit to Protein"
+   0.0000000    0.0005005
+   1.0000000    0.2369226
+   2.0000000    0.1942697
+   3.0000002    0.2484123
+   4.0000000    0.2173150
+   5.0000000    0.2051313
+   6.0000005    0.1930742
+   7.0000005    0.2352681
+   8.0000000    0.0906892
+   9.0000000    0.1324115
+  10.0000000    0.1962346

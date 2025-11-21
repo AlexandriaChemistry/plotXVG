@@ -1,0 +1,35 @@
+# This file was created Tue Nov 18 11:35:16 2025
+# Created by:
+#                       :-) GROMACS - gmx sasa, 2025.3 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/mansrosenbaum/DVSlab/GRO_runs/run1_1ubi/analysis
+# Command line:
+#   gmx sasa -s run.tpr -f traj_fit.xtc -o sasa_total.xvg -or resarea.xvg
+# gmx sasa is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "Solvent Accessible Surface"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Area (nm\S2\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Total"
+      0.000   50.724
+   1000.000   52.190
+   2000.000   48.799
+   3000.000   51.471
+   4000.000   49.684
+   5000.000   49.291
+   6000.000   51.175
+   7000.000   51.371
+   8000.000   49.980
+   9000.000   49.309
+  10000.000   47.667

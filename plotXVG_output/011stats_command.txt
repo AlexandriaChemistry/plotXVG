@@ -1,0 +1,6 @@
+Description:
+Shows statistics (RMSD, R2).
+File(s) used:
+act_xvgfiles/COULOMB.xvg act_xvgfiles/EPOT.xvg
+Command:
+python plotxvg -f act_xvgfiles/COULOMB.xvg act_xvgfiles/EPOT.xvg -stats -panels -save plotXVG_output/011stats.pdf -noshow
