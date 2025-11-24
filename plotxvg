@@ -138,7 +138,10 @@ class DataSet:
                 for d in range(len(ori_dataset)):
                     ds = ori_dataset
                     rmsd, r2 = self.calc_rmsd_r2(ds[d].x, ds[d].y)
-                    self.legend[d] = f"{self.legend[d]}, RMSD = {rmsd:.4f}, R2 = {r2:.4f}"
+                    print_r2 = f"{r2:.2f}"
+                    if print_r2 == "1.00":
+                        print_r2 = f"{r2:.4f}"
+                    self.legend[d] = f"{self.legend[d]}, RMSD = {rmsd:.2f}, R\u00b2 = {print_r2}"
 
     def set_extent(self, myax, args):
         if len(self.dataset) < 1:
