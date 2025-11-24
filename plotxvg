@@ -455,7 +455,7 @@ def plot_once(axs, args):
         thisax.set_ylim(yymin-deltay, yymax+deltay)
 
         # Set labels and titles
-        title = args.title[filenumber] if args.title else None
+        title = args.title[filenumber] if args.title and filenumber < len(args.title) else "None"
         if args.sharelabel and args.panels:
             rowindex = filenumber // ncolumn #counts rows by taking the division without rest
             columnindex = filenumber % ncolumn #counts columns by taking the rest
