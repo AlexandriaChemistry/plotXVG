@@ -24,6 +24,7 @@ all_examples = [
     ("markers_5datasets", "One file containing five datasets, without any flags added (will thus be plotted using markers).", "modified_xvgfiles/ammonium#chloride.xvg", ""),
     ("lines_4datasets", "User-defined lines", "gmx_xvgfiles/gyrate.xvg", "-ls dotted solid dashed dashdot"),
     ("mk_and_ls", "Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined", "modified_xvgfiles/ammonium#chloride.xvg", "-ls solid dashed solid None None -mk None None x + ."),
+    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.", "modified_xvgfiles/ammonium#chloride.xvg", "-legend_x 0.68"),
 
     ("two_panels", "Using the panels flag", "gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg", "-panels -ls solid "),
     ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\nFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \nfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg", "-panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -tfs 40 -alfs 35 -mksize 20 -mkwidth 4"),

@@ -1,0 +1,6 @@
+Description:
+Histogram with three datasets
+File(s) used:
+modified_xvgfiles/rmsf_res_66-76.xvg modified_xvgfiles/rmsf_res_66-76x1.2.xvg modified_xvgfiles/rmsf_res_66-76x0.8.xvg
+Command:
+python plotxvg -f modified_xvgfiles/rmsf_res_66-76.xvg modified_xvgfiles/rmsf_res_66-76x1.2.xvg modified_xvgfiles/rmsf_res_66-76x0.8.xvg -bar -save plotXVG_output/014threebars.pdf -noshow

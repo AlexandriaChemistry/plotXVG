@@ -3,4 +3,4 @@ Histogram with one dataset
 File(s) used:
 gmx_xvgfiles/rmsf_residues.xvg
 Command:
-python plotxvg -f gmx_xvgfiles/rmsf_residues.xvg -bar -save plotXVG_output/012bar.pdf -noshow
+python plotxvg -f gmx_xvgfiles/rmsf_residues.xvg -bar -save plotXVG_output/013bar.pdf -noshow

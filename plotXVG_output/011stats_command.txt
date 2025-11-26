@@ -4,4 +4,4 @@ Also note -sharelabel, which removes axis labels except for the first column and
 File(s) used:
 act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg
 Command:
-python plotxvg -f act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -save plotXVG_output/010stats.pdf -noshow
+python plotxvg -f act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -save plotXVG_output/011stats.pdf -noshow

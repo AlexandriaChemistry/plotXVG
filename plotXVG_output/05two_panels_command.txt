@@ -1,6 +1,0 @@
-Description:
-Using the panels flag
-File(s) used:
-gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg
-Command:
-python plotxvg -f gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg -panels -ls solid  -save plotXVG_output/05two_panels.pdf -noshow

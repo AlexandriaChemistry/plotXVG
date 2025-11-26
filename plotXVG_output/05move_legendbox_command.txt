@@ -1,0 +1,6 @@
+Description:
+Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.
+File(s) used:
+modified_xvgfiles/ammonium#chloride.xvg
+Command:
+python plotxvg -f modified_xvgfiles/ammonium#chloride.xvg -legend_x 0.68 -save plotXVG_output/05move_legendbox.pdf -noshow
