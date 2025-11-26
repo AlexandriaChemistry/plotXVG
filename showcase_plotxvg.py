@@ -26,7 +26,7 @@ all_examples = [
     ("mk_and_ls", "Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined", "modified_xvgfiles/ammonium#chloride.xvg", "-ls solid dashed solid None None -mk None None x + ."),
 
     ("two_panels", "Using the panels flag", "gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg", "-panels -ls solid "),
-    ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\nFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \nfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg", "-panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -mksize 20 -mkwidth 4"),
+    ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\nFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \nfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg", "-panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -tfs 40 -alfs 35 -mksize 20 -mkwidth 4"),
 
     ("colors","A custom choice of colors. Colors defined by the user will be applied to the datasets in order. \nIf there are more datasets than color inputs, default colors will be used.", "gmx_xvgfiles/intra_energies.xvg", "-colors green purple red"),
 
