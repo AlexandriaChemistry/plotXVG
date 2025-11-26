@@ -1,6 +1,7 @@
 Description:
 Demonstrates the equal axes flag. This flag makes the plot square with equally large axes.
+Also note the possibility to create user-defined titles.
 File(s) used:
-act_xvgfiles/COULOMB.xvg
+act_xvgfiles/COULOMB-PC-allelec.xvg
 Command:
-python plotxvg -f act_xvgfiles/COULOMB.xvg -eqax -save plotXVG_output/09equalaxes.pdf -noshow
+python plotxvg -f act_xvgfiles/COULOMB-PC-allelec.xvg -title 'Coulomb energies from ACT training' -dslegends 'PC-allelec' -eqax -save plotXVG_output/09equalaxes.pdf -noshow

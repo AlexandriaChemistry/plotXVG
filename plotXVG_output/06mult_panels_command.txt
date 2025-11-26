@@ -1,7 +1,0 @@
-Description:
-Multiple panels, also showcases the use of the -sharelabel flag. Also note the possibility to apply user-defined titles, seen in panel C.
-To combine files with pre-defined titles and files with user-defined titles, use None as placeholders for the files with pre-defined titles.
-File(s) used:
-act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg
-Command:
-python plotxvg -f act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg act_xvgfiles/COULOMB.xvg -panels -sharelabel -title 'Potential Energy' 'Potential Energy' None None -save plotXVG_output/06mult_panels.pdf -noshow

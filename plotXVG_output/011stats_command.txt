@@ -1,6 +1,7 @@
 Description:
-Shows statistics (RMSD, R2).
+Shows statistics (RMSD, R²). If R² is close to 1 more digits are added.
+Also note -sharelabel, which removes axis labels except for the first column and the last row. Suitable if all subplots shares the same axis labels.
 File(s) used:
-act_xvgfiles/COULOMB.xvg act_xvgfiles/EPOT.xvg
+act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg
 Command:
-python plotxvg -f act_xvgfiles/COULOMB.xvg act_xvgfiles/EPOT.xvg -stats -panels -save plotXVG_output/011stats.pdf -noshow
+python plotxvg -f act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -save plotXVG_output/011stats.pdf -noshow

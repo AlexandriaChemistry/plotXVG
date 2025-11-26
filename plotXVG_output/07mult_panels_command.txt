@@ -5,4 +5,4 @@ for example adding -mksize 20 -mkwidth 4 in a subplot of two columns.
 File(s) used:
 gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg
 Command:
-python plotxvg -f gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg -panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -mksize 20 -mkwidth 4 -save plotXVG_output/07vary_panel_content.pdf -noshow
+python plotxvg -f gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg -panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -tfs 40 -alfs 35 -mksize 20 -mkwidth 4 -save plotXVG_output/07mult_panels.pdf -noshow
