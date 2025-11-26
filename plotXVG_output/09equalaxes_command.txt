@@ -1,6 +1,0 @@
-Description:
-Demonstrates the equal axes flag. This flag makes the plot square with equally large axes.
-File(s) used:
-act_xvgfiles/COULOMB.xvg
-Command:
-python plotxvg -f act_xvgfiles/COULOMB.xvg -eqax -save plotXVG_output/09equalaxes.pdf -noshow

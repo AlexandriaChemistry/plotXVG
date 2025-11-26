@@ -1,6 +1,0 @@
-Description:
-Change the font for all texts.
-File(s) used:
-gmx_xvgfiles/2dproj_PC1_PC2.xvg
-Command:
-python plotxvg -f gmx_xvgfiles/2dproj_PC1_PC2.xvg -font Tahoma -save plotXVG_output/015font.pdf -noshow
