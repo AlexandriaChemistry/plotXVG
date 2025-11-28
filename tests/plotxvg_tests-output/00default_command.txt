@@ -1,0 +1,6 @@
+Description:
+This plot is created without flags. Default setting is to make a scatterplot.
+File(s) used:
+gmx_xvgfiles/2dproj_PC1_PC2.xvg
+Command:
+plotxvg -f gmx_xvgfiles/2dproj_PC1_PC2.xvg -save plotxvg_tests-output/00default.pdf -noshow

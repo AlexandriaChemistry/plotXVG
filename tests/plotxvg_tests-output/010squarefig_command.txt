@@ -1,0 +1,6 @@
+Description:
+Demonstrates the square figure flag. This flag simply makes the saved figure square.
+File(s) used:
+gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg
+Command:
+plotxvg -f gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg -panels -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -mksize 20 -mkwidth 4 -sqfig -save plotxvg_tests-output/010squarefig.pdf -noshow

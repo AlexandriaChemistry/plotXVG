@@ -1,0 +1,7 @@
+Description:
+Demonstrates the equal axes flag. This flag makes the plot square with equally large axes.
+Also note the possibility to create user-defined titles.
+File(s) used:
+act_xvgfiles/COULOMB-PC-allelec.xvg
+Command:
+plotxvg -f act_xvgfiles/COULOMB-PC-allelec.xvg -title 'Coulomb energies from ACT training' -dslegends 'PC-allelec' -eqax -save plotxvg_tests-output/09equalaxes.pdf -noshow

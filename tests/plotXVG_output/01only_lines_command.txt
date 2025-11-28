@@ -1,6 +1,0 @@
-Description:
-Using lines
-File(s) used:
-gmx_xvgfiles/potential_energy.xvg
-Command:
-python plotxvg -f gmx_xvgfiles/potential_energy.xvg -ls solid -save plotXVG_output/01only_lines.pdf -noshow

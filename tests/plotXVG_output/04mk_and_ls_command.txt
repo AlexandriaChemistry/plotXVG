@@ -1,6 +1,0 @@
-Description:
-Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined
-File(s) used:
-modified_xvgfiles/ammonium#chloride.xvg
-Command:
-python plotxvg -f modified_xvgfiles/ammonium#chloride.xvg -ls solid dashed solid None None -mk None None x + . -save plotXVG_output/04mk_and_ls.pdf -noshow
