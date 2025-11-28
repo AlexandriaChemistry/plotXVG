@@ -10,7 +10,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
   { name = "Måns Rosenbaum", email = "mans.rosenbaum@icm.uu.se" },
-  { name = "David van der Spoel", email = "david.vanderspoel@icm.uu.se}
+  { name = "David van der Spoel", email = "david.vanderspoel@icm.uu.se"}
 ]
 dependencies = [
   "matplotlib>=3.7.0",
