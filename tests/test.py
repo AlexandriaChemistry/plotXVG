@@ -3,9 +3,9 @@ from pathlib import Path
 import subprocess
 
 
-viewxvg_cmd = "python plotxvg"
+plotxvg_cmd = "plotxvg"
 
-outputdir = Path("plotXVG_output")
+outputdir = Path("plotxvg_tests-output")
 outputdir.mkdir(parents=True, exist_ok=True)
 
 #Define examples of using the flags in a list of dictionaries
@@ -14,7 +14,7 @@ examples = [
         "name":"default",
         "description":"This plot is created without flags. Default setting is to make a scatterplot.",
         "inputfile":"gmx_xvgfiles/2dproj_PC1_PC2.xvg",
-        "cmd":f"{viewxvg_cmd} -f gmx_xvgfiles/2dproj_PC1_PC2.xvg -save {outputdir}/00default.pdf -noshow"
+        "cmd":f"{plotxvg_cmd} -f gmx_xvgfiles/2dproj_PC1_PC2.xvg -save {outputdir}/00default.pdf -noshow"
     }
 ]
 
@@ -52,11 +52,11 @@ for name, desc, inp, flags in all_examples:
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "cmd": f"{viewxvg_cmd} -f {inp} {flags} -save {outputdir}/0{setcount}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/0{setcount}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 
-# Run viewxvg with all the examples
+# Run plotxvg with all the examples
 setcount = 0
 for ex in examples:
     print(f"Generating {ex['name']}")

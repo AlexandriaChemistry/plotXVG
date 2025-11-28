@@ -1,6 +1,0 @@
-Description:
-This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.
-File(s) used:
-gmx_xvgfiles/eigenval.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/potential_energy.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg gmx_xvgfiles/resarea.xvg gmx_xvgfiles/rmsd_backbone.xvg gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg gmx_xvgfiles/rmsf_residues.xvg gmx_xvgfiles/sasa_total.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/intra_energies.xvg
-Command:
-python plotxvg -f gmx_xvgfiles/eigenval.xvg gmx_xvgfiles/gyrate.xvg gmx_xvgfiles/potential_energy.xvg gmx_xvgfiles/2dproj_PC1_PC2.xvg gmx_xvgfiles/resarea.xvg gmx_xvgfiles/rmsd_backbone.xvg gmx_xvgfiles/rmsd_calpha.xvg gmx_xvgfiles/rmsd_sidechain.xvg gmx_xvgfiles/rmsf_residues.xvg gmx_xvgfiles/sasa_total.xvg gmx_xvgfiles/temp_press.xvg gmx_xvgfiles/intra_energies.xvg -mk x None None None None None '*' None None None None None o None None None o x ^ -ls None solid dashed dashdot solid solid None solid dashed solid solid solid None solid solid solid solid solid solid -panels -save plotXVG_output/016Alot_of_panels.pdf -noshow

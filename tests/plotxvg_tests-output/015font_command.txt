@@ -1,0 +1,6 @@
+Description:
+Change the font for all texts.
+File(s) used:
+gmx_xvgfiles/2dproj_PC1_PC2.xvg
+Command:
+plotxvg -f gmx_xvgfiles/2dproj_PC1_PC2.xvg -font Tahoma -save plotxvg_tests-output/015font.pdf -noshow

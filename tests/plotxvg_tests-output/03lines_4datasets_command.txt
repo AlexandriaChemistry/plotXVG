@@ -1,0 +1,6 @@
+Description:
+User-defined lines
+File(s) used:
+gmx_xvgfiles/gyrate.xvg
+Command:
+plotxvg -f gmx_xvgfiles/gyrate.xvg -ls dotted solid dashed dashdot -save plotxvg_tests-output/03lines_4datasets.pdf -noshow
