@@ -634,23 +634,26 @@ def animate(t):
     plt.gcf().autofmt_xdate()
     plt.tight_layout()
 
-if __name__ == '__main__':   
+def main():
+    # Keep variables global while still in main(), can be cleaned up later.
+    global viewDebug, args, nfiles, ncolumn, nrow, fig, axs
+
     args = parseArguments()
     if args.debug:
         viewDebug = True
 
     # Define the number of columns and files
-    nfiles  = len(args.filename)
+    nfiles = len(args.filename) if args.filename else 0
     ncolumn = 1
 
     if args.panels:
-        ncolumn = int(math.sqrt(nfiles))
-        nrow = int(nfiles/ncolumn)
+        ncolumn = int(math.sqrt(nfiles)) if nfiles > 0 else 1
+        nrow = int(nfiles / ncolumn) if ncolumn > 0 else 1
         if nfiles % ncolumn != 0:
             nrow += 1
         if args.squarefig:
             xframe = (args.yframe)
-            yframe = (args.yframe/ncolumn)*nrow
+            yframe = (args.yframe / ncolumn) * nrow
         else:
             xframe = args.xframe
             yframe = args.yframe
@@ -678,3 +681,7 @@ if __name__ == '__main__':
                 print("Plotting failed:", e)
         if not args.noshow:
             plt.show()
+
+
+if __name__ == '__main__':
+    main()

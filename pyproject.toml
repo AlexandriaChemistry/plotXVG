@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plotxvg"
+version = "0.1.0"
+description = "Batch-generation of publication quality graphs."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Måns Rosenbaum", email = "mans.rosenbaum@icm.uu.se" },
+  { name = "David van der Spoel", email = "david.vanderspoel@icm.uu.se}
+]
+dependencies = [
+  "matplotlib>=3.7.0",
+  "numpy>=1.24.1",
+]
+requires-python = ">=3.7"
+
+[project.scripts]
+plotxvg = "plotxvg.plotxvg:main"
+
+[project.urls]
+Homepage = "https://github.com/AlexandriaChemistry/plotXVG"
+Source = "https://github.com/AlexandriaChemistry/plotXVG"
+Issues = "https://github.com/AlexandriaChemistry/plotXVG/issues"
