@@ -182,9 +182,9 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                 col.append(int(i))
             labels["xlabel"] = headers[col[0]]
             if len(col) == 2:
-                labels["ylabel"] = headers[col[1]]
+                labels["ylabel"] = headers[col[1]] #The whole label should be seen from axis if only one column is plotted
             elif len(col) > 2:
-                labels["ylabel"] = headers[col[1]].split('(')[-1].split(')')[0]
+                labels["ylabel"] = headers[col[1]].split('(')[-1].split(')')[0] #Split label and unit to legend and axis label
                 legends.append(headers[col[1]].split('(')[0])
                 for yl in col[2:]:
                     labels["ylabel"] = labels["ylabel"]+", "+headers[yl].split('(')[-1].split(')')[0]
@@ -217,7 +217,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
             if len(w) == 1:
                 w = line.split(dialect.delimiter)
             if is_csv:
-                numwords = len(col) #+1 being the x column
+                numwords = len(col)
             else:
                 numwords = len(w)
                 col = [i for i in range(len(w))]
