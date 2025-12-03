@@ -180,16 +180,20 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                 col.append(args.csvx)
             for i in args.csvy:
                 col.append(int(i))
-            labels["xlabel"] = headers[col[0]]
+            #In the case of an xlabel you want to use is in the first column and has a '#' in the beginning
+            #it makes this label not being considered a literal string, so we remove citation marks
+            labels["xlabel"] = headers[col[0]].split('#')[-1].strip().strip('"') if '#' in headers[col[0]] else headers[col[0]]
             if len(col) == 2:
                 labels["ylabel"] = headers[col[1]] #The whole label should be seen from axis if only one column is plotted
             elif len(col) > 2:
                 labels["ylabel"] = headers[col[1]].split('(')[-1].split(')')[0] #Split label and unit to legend and axis label
                 legends.append(headers[col[1]].split('(')[0])
                 for yl in col[2:]:
-                    labels["ylabel"] = labels["ylabel"]+", "+headers[yl].split('(')[-1].split(')')[0]
+                    new_label = headers[yl].split('(')[-1].split(')')[0] #Don't repeat unit labels
+                    if new_label not in labels["ylabel"]:
+                        labels["ylabel"] = labels["ylabel"]+", "+new_label
                     legends.append(headers[yl].split('(')[0])
-
+            print(labels)
         #To store labels and legends from xvg files
         for line in inf:
             nhash = line.find("#")
