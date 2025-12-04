@@ -1,7 +1,7 @@
 Description:
-Demonstrates the equal axes flag. This flag makes the plot square with equally large axes.
-Also note the possibility to create user-defined titles.
+Demonstrates the equal axes flag. This flag makes the plot square with equally large axes, suitable for correlation plots.
+Also note the possibility to plot panels side-by-side by adding side to the panels flag.
 File(s) used:
-act_xvgfiles/COULOMB-PC-allelec.xvg
+act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg
 Command:
-plotxvg -f act_xvgfiles/COULOMB-PC-allelec.xvg -title 'Coulomb energies from ACT training' -dslegends 'PC-allelec' -eqax -save plotxvg_tests-output/09equalaxes.pdf -noshow
+plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg -panels side -dslegends 'PC-elec' 'PC+GS-elec' -eqax -sharelabel -save plotxvg_tests-output/09equalaxes.pdf -noshow

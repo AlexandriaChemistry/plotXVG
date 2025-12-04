@@ -194,7 +194,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                     if new_label not in labels["ylabel"]:
                         labels["ylabel"] = labels["ylabel"]+", "+new_label
                     legends.append(headers[yl].split('(')[0])
-            print(labels)
+        
         #To store labels and legends from xvg files
         for line in inf:
             nhash = line.find("#")
@@ -322,7 +322,7 @@ class DataSet:
                 self.legend.append(texify(arglegend))
             if args.stats:
                 #Fetch the dataset without residual
-                _,_,ori_dataset = read_xvg(filenm, False, filelabel)
+                _,_,ori_dataset = read_xvg(args, filenm, False, filelabel)
                 #Print R2 and RMSD values in legend
                 for d in range(len(ori_dataset)):
                     ds = ori_dataset
@@ -705,7 +705,7 @@ def main():
         if args.squarefig:
             xframe = (args.yframe)
             yframe = (args.yframe / ncolumn) * nrow
-        elif (nrow == 2 or nrow == 3) and args.panels == 'top':
+        elif (nfiles == 2 or nfiles == 3) and args.panels == 'top':
             xframe = args.xframe
             yframe = args.yframe * (nrow*0.75) #To increase frame height slightly for two and three panels
         else:
