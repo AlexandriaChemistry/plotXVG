@@ -218,12 +218,11 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                             labels[labkey] = legval
                 continue
             
-            w = line.split()
-            if len(w) == 1:
-                w = line.split(dialect.delimiter)
             if is_csv:
+                w = line.split(dialect.delimiter)
                 numwords = len(col)
             else:
+                w = line.split()
                 numwords = len(w)
                 col = [i for i in range(len(w))]
             
