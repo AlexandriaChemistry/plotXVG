@@ -1,7 +1,10 @@
 import os
 from pathlib import Path
 import subprocess
-
+import shutil, sys
+#Check if the user has installed plotxvg first
+if shutil.which("plotxvg") == None:
+   sys.exit("Please install plotxvg first")
 
 plotxvg_cmd = "plotxvg"
 
