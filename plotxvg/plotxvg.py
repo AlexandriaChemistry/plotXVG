@@ -322,7 +322,7 @@ class DataSet:
                 self.legend.append(texify(arglegend))
             if args.stats:
                 #Fetch the dataset without residual
-                _,_,ori_dataset = read_xvg(filenm, False, filelabel)
+                _,_,ori_dataset = read_xvg(args, filenm, False, filelabel)
                 #Print R2 and RMSD values in legend
                 for d in range(len(ori_dataset)):
                     ds = ori_dataset
