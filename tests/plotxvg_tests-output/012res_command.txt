@@ -2,6 +2,6 @@ Description:
 Plots the residual of the data, meaning x is substracted from y for all data sets.
 Statistics are based on original train and test values and will not be affected by the residual flag.
 File(s) used:
-act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg
+act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC-allelec.xvg act_files/COULOMB-PC+GS-elec.xvg act_files/COULOMB-PC+GS-allelec.xvg
 Command:
-plotxvg -f act_xvgfiles/COULOMB-PC-elec.xvg act_xvgfiles/COULOMB-PC-allelec.xvg act_xvgfiles/COULOMB-PC+GS-elec.xvg act_xvgfiles/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -res -save plotxvg_tests-output/012res.pdf -noshow
+plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC-allelec.xvg act_files/COULOMB-PC+GS-elec.xvg act_files/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -res -save plotxvg_tests-output/012res.pdf -noshow
