@@ -51,6 +51,8 @@ all_examples = [
 
     ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4"),
     ("fig2_article","The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side"),
+    ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -alfs 38 -ls solid")
+
 ]
 setcount = 1
 for name, desc, inp, flags in all_examples:
