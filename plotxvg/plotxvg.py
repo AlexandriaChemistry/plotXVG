@@ -705,7 +705,7 @@ def main():
         if args.squarefig:
             xframe = (args.yframe)
             yframe = (args.yframe / ncolumn) * nrow
-        elif (nrow == 2 or nrow == 3) and args.panels == 'top':
+        elif (nfiles == 2 or nfiles == 3) and args.panels == 'top':
             xframe = args.xframe
             yframe = args.yframe * (nrow*0.75) #To increase frame height slightly for two and three panels
         else:
