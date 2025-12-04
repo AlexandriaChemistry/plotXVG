@@ -1,6 +1,6 @@
 Description:
-Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.
+	Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.
 File(s) used:
-other_files/ammonium#chloride.xvg
+	other_files/ammonium#chloride.xvg
 Command:
-plotxvg -f other_files/ammonium#chloride.xvg -legend_x 0.68 -save plotxvg_tests-output/05move_legendbox.pdf -noshow
+	plotxvg -f other_files/ammonium#chloride.xvg -legend_x 0.68 -save plotxvg_tests-output/05move_legendbox.pdf -noshow
