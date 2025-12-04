@@ -194,7 +194,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                     if new_label not in labels["ylabel"]:
                         labels["ylabel"] = labels["ylabel"]+", "+new_label
                     legends.append(headers[yl].split('(')[0])
-            print(labels)
+        
         #To store labels and legends from xvg files
         for line in inf:
             nhash = line.find("#")
