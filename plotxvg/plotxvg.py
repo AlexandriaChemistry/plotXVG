@@ -681,9 +681,12 @@ def plot_once(axs, args):
         args.save = None
 
 def animate(t):
-    plot_once()
-    plt.gcf().autofmt_xdate()
-    plt.tight_layout()
+    try:
+        plot_once(axs, args)
+        plt.gcf().autofmt_xdate()
+        plt.tight_layout()
+    except Exception as e:
+        print("Update failed:", e)
 
 def main():
     # Keep variables global while still in main(), can be cleaned up later.
