@@ -10,6 +10,8 @@ if shutil.which("pdflatex") == None:
 OUTPUT_PLOTS = Path("../tests/plotxvg_tests-output") 
 INFILE = Path("chapters/temp_plots.tex")
 OUTFILE = Path("chapters/example_plots.tex")
+outputdir = Path("plotXVG_manual")
+outputdir.mkdir(parents=True, exist_ok=True)
 
 def collect_examples():
     examples_latex = ""
@@ -77,7 +79,13 @@ if __name__ == "__main__":
     build_plotchapter()
     subprocess.run([
     "pdflatex",
-    "-output-directory=manual",
-    "-jobname=manual",
+    "-output-directory=plotXVG_manual",
+    "-jobname=plotXVG_manual",
+    "main.tex"
+]) #Run twice because pdflatex requests that time to time
+    subprocess.run([
+    "pdflatex",
+    "-output-directory=plotXVG_manual",
+    "-jobname=plotXVG_manual",
     "main.tex"
 ])
