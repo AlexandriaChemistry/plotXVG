@@ -33,6 +33,8 @@ To use plotXVG, simply type `plotxvg -f <filename>.xvg` in the command line and 
 Default setting is a scatterplot, if you want to generate a lineplot, add the linestyle flag along with a line argument, such as `-ls solid`. 
 PlotXVG supports a number of flags, shown below.
 
+For more information on installation, usage and a collection of plotXVG examples, you find the manual in the *plotXVG_manual* directory.
+
 ## plotXVG flags
 ```
 options:
