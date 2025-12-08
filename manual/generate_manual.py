@@ -75,17 +75,16 @@ def build_plotchapter():
     OUTFILE.write_text(final_tex)
     print("plots insterted. Generating manual...")
 
-if __name__ == "__main__":
-    build_plotchapter()
-    subprocess.run([
-    "pdflatex",
-    "-output-directory=plotXVG_manual",
-    "-jobname=plotXVG_manual",
-    "main.tex"
+build_plotchapter()
+subprocess.run([
+"pdflatex",
+"-output-directory=plotXVG_manual",
+"-jobname=plotXVG_manual",
+"main.tex"
 ]) #Run twice because pdflatex requests that time to time
-    subprocess.run([
-    "pdflatex",
-    "-output-directory=plotXVG_manual",
-    "-jobname=plotXVG_manual",
-    "main.tex"
+subprocess.run([
+"pdflatex",
+"-output-directory=plotXVG_manual",
+"-jobname=plotXVG_manual",
+"main.tex"
 ])
