@@ -4,4 +4,4 @@ Description:
 File(s) used:
 	act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC-allelec.xvg act_files/COULOMB-PC+GS-elec.xvg act_files/COULOMB-PC+GS-allelec.xvg
 Command:
-	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC-allelec.xvg act_files/COULOMB-PC+GS-elec.xvg act_files/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -res -save plotxvg_tests-output/012res.pdf -noshow
+	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC-allelec.xvg act_files/COULOMB-PC+GS-elec.xvg act_files/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels -sharelabel -sqfig -stats -res -save plotxvg_tests-output/12res.pdf -noshow

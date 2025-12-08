@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	other_files/openmm.csv
 Command:
-	plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid -save plotxvg_tests-output/017openMMfile.pdf -noshow
+	plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid -save plotxvg_tests-output/17openMMfile.pdf -noshow

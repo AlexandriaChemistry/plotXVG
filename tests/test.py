@@ -27,7 +27,7 @@ all_examples = [
     ("markers_5datasets", "One file containing five datasets, without any flags added (will thus be plotted using markers).", "other_files/ammonium#chloride.xvg", ""),
     ("lines_4datasets", "User-defined lines", "gmx_files/gyrate.xvg", "-ls dotted solid dashed dashdot"),
     ("mk_and_ls", "Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined", "other_files/ammonium#chloride.xvg", "-ls solid dashed solid None None -mk None None x + ."),
-    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
+    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend\_y.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
 
     ("two_panels", "Using the panels flag, along with -notitles. Also note -sharelabel, which removes axis labels except for the first column and the last row.\n\tSuitable if all subplots shares the same axis labels.", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg", "-panels -sharelabel -notitles -ls solid "),
     ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\n\tFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \n\tfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -tfs 40 -alfs 35 -mksize 20 -mkwidth 4"),
@@ -60,7 +60,7 @@ for name, desc, inp, flags in all_examples:
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/0{setcount}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 
@@ -78,7 +78,7 @@ for ex in examples:
         continue
 
     # Save command text
-    with open(outputdir/f"0{setcount}{ex['name']}_command.txt", "w") as f:
+    with open(outputdir/f"{setcount:02d}{ex['name']}_command.txt", "w") as f:
         f.write("Description:\n\t" + ex["description"] + "\n")
         f.write("File(s) used:\n\t" + ex["inputfile"] + "\n")
         f.write("Command:\n\t" + cmd + "\n")

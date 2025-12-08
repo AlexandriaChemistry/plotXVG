@@ -1,0 +1,28 @@
+\clearpage
+\section{Installation of plotXVG}
+plotXVG is written in python and requires only a few dependencies to run. 
+
+\subsection{Prerequisites}
+The following software packages are required for plotXVG to work:
+\begin{enumerate}
+    \item Matplotlib version 3.7.0 or higher.
+    \item NumPy version 1.24.1 or higher.
+    \item Python, version 3.7 or higher.
+    \item Pip package manager, preferably of newest release.
+    \item (Optional) XQuartz or similar for opening external windows while being on a remote server.
+\end{enumerate}
+
+\subsection{Running the Installation}
+Installation of plotXVG can be done in two ways, The first one is by cloning the git repository to your local computer by running
+\begin{verbatim}
+    git clone https://github.com/AlexandriaChemistry/plotXVG
+\end{verbatim}
+and then go in to that directory and, while being in your local environment, run the installation with pip:
+\begin{verbatim}
+    python -m pip install .
+\end{verbatim}
+Now you can use plotXVG! Another option is to simply type
+\begin{verbatim}
+    python -m pip install plotxvg
+\end{verbatim}
+and plotXVG will be fetched from PyPi and installed, simple as that. The benefit with cloning the repository from GitHub is the example runs are available to test the script. It is not a requirement.
