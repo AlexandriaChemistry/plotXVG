@@ -1,0 +1,9 @@
+\contentsline {section}{Preface}{3}{section*.3}%
+\contentsline {subsection}{About plotXVG}{3}{section*.4}%
+\contentsline {section}{User Manual}{4}{section*.4}%
+\contentsline {section}{\numberline {1}Installation of plotXVG}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Prerequisites}{5}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Running the Installation}{5}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Using plotXVG}{6}{section.2}%
+\contentsline {section}{\numberline {3}Additional Flags}{7}{section.3}%
+\contentsline {section}{\numberline {4}Example Plots}{12}{section.4}%

@@ -1,0 +1,326 @@
+\clearpage
+\section{Example Plots}
+This section aims to give an easier understanding of how one can use plotXVG, using examples given by the test.py script found in the plotXVG GitHub repository. For each plot is also the exact plotXVG command for easy reproducibility. We hope this can further show the scope of plotXVG's abilities.
+
+
+Command for Fig. \ref{fig:00}:
+\begin{verbatim}
+plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -save \
+		plotxvg_tests-output/00default.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/00default.pdf}
+    \caption{This plot is created without flags. Default setting is to make a scatterplot.}
+    \label{fig:00}
+\end{figure}
+
+
+Command for Fig. \ref{fig:01}:
+\begin{verbatim}
+plotxvg -f gmx_files/potential_energy.xvg -ls solid -save \
+		plotxvg_tests-output/01only_lines.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/01only_lines.pdf}
+    \caption{Using lines}
+    \label{fig:01}
+\end{figure}
+
+
+Command for Fig. \ref{fig:02}:
+\begin{verbatim}
+plotxvg -f other_files/ammonium#chloride.xvg  -save \
+		plotxvg_tests-output/02markers_5datasets.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/02markers_5datasets.pdf}
+    \caption{One file containing five datasets, without any flags added (will thus be plotted using markers).}
+    \label{fig:02}
+\end{figure}
+
+
+Command for Fig. \ref{fig:03}:
+\begin{verbatim}
+plotxvg -f gmx_files/gyrate.xvg -ls dotted solid dashed \
+		dashdot -save plotxvg_tests-output/03lines_4datasets.pdf \
+		-noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/03lines_4datasets.pdf}
+    \caption{User-defined lines}
+    \label{fig:03}
+\end{figure}
+
+
+Command for Fig. \ref{fig:04}:
+\begin{verbatim}
+plotxvg -f other_files/ammonium#chloride.xvg -ls solid \
+		dashed solid None None -mk None None x + . -save \
+		plotxvg_tests-output/04mk_and_ls.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/04mk_and_ls.pdf}
+    \caption{Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined}
+    \label{fig:04}
+\end{figure}
+
+
+Command for Fig. \ref{fig:05}:
+\begin{verbatim}
+plotxvg -f other_files/ammonium#chloride.xvg -legend_x 0.68 \
+		-save plotxvg_tests-output/05move_legendbox.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/05move_legendbox.pdf}
+    \caption{Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend\_y.}
+    \label{fig:05}
+\end{figure}
+
+
+Command for Fig. \ref{fig:06}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/rmsd_sidechain.xvg -panels -sharelabel -notitles \
+		-ls solid  -save plotxvg_tests-output/06two_panels.pdf \
+		-noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/06two_panels.pdf}
+    \caption{Using the panels flag, along with -notitles. Also note -sharelabel, which removes axis labels except for the first column and the last row.
+	Suitable if all subplots shares the same axis labels.}
+    \label{fig:06}
+\end{figure}
+
+
+Command for Fig. \ref{fig:07}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
+		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
+		dotted dashdot dashed None -mk None None None o + x ^ + \
+		-panels -tfs 40 -alfs 35 -mksize 20 -mkwidth 4 -save \
+		plotxvg_tests-output/07mult_panels.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/07mult_panels.pdf}
+    \caption{Panels that shows differently expressed data, such as two with lines and two with markers.
+	Font- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by 
+	for example adding -mksize 20 -mkwidth 4 in a subplot of two columns.}
+    \label{fig:07}
+\end{figure}
+
+
+Command for Fig. \ref{fig:08}:
+\begin{verbatim}
+plotxvg -f gmx_files/intra_energies.xvg -colors green purple \
+		red -save plotxvg_tests-output/08colors.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/08colors.pdf}
+    \caption{A custom choice of colors. Colors defined by the user will be applied to the datasets in order. 
+	If there are more datasets than color inputs, default colors will be used.}
+    \label{fig:08}
+\end{figure}
+
+
+Command for Fig. \ref{fig:09}:
+\begin{verbatim}
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
+		'PC+GS-elec' -eqax -sharelabel -panels side  -save \
+		plotxvg_tests-output/09equalaxes.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/09equalaxes.pdf}
+    \caption{Demonstrates the equal axes flag. This flag makes the plot square with equally large axes, suitable for correlation plots.
+	Also note the possibility to plot panels side-by-side by adding side to the panels flag.}
+    \label{fig:09}
+\end{figure}
+
+
+Command for Fig. \ref{fig:10}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
+		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
+		dotted dashdot dashed None -mk None None None o + x ^ + \
+		-panels -mksize 20 -mkwidth 4 -sqfig -save \
+		plotxvg_tests-output/10squarefig.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/10squarefig.pdf}
+    \caption{Demonstrates the square figure flag. This flag simply makes the saved figure square.}
+    \label{fig:10}
+\end{figure}
+
+
+Command for Fig. \ref{fig:11}:
+\begin{verbatim}
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC-allelec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg \
+		act_files/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec \
+		PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels \
+		-sharelabel -sqfig -stats -save \
+		plotxvg_tests-output/11stats.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/11stats.pdf}
+    \caption{Shows statistics (RMSD, R²). If R² is close to 1 more digits are added.
+	Caution for strange plotting behaviours if the legend is too long or the font is large!}
+    \label{fig:11}
+\end{figure}
+
+
+Command for Fig. \ref{fig:12}:
+\begin{verbatim}
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC-allelec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg \
+		act_files/COULOMB-PC+GS-allelec.xvg -dslegends PC-elec \
+		PC-allelec PC+GS-elec PC+GS-allelec -alfs 38 -lfs 19 -panels \
+		-sharelabel -sqfig -stats -res -save \
+		plotxvg_tests-output/12res.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/12res.pdf}
+    \caption{Plots the residual of the data, meaning x is substracted from y for all data sets.
+	Statistics are based on original train and test values and will not be affected by the residual flag.}
+    \label{fig:12}
+\end{figure}
+
+
+Command for Fig. \ref{fig:13}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsf_residues.xvg -bar -save \
+		plotxvg_tests-output/13bar.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/13bar.pdf}
+    \caption{Histogram with one dataset}
+    \label{fig:13}
+\end{figure}
+
+
+Command for Fig. \ref{fig:14}:
+\begin{verbatim}
+plotxvg -f other_files/rmsf_res_66-76.xvg \
+		other_files/rmsf_res_66-76x1.2.xvg \
+		other_files/rmsf_res_66-76x0.8.xvg -bar -save \
+		plotxvg_tests-output/14threebars.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/14threebars.pdf}
+    \caption{Histogram with three datasets}
+    \label{fig:14}
+\end{figure}
+
+
+Command for Fig. \ref{fig:15}:
+\begin{verbatim}
+plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -font Tahoma -save \
+		plotxvg_tests-output/15font.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/15font.pdf}
+    \caption{Change the font for all texts. Here it is changed to 'Tahoma'.}
+    \label{fig:15}
+\end{figure}
+
+
+Command for Fig. \ref{fig:16}:
+\begin{verbatim}
+plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg \
+		gmx_files/potential_energy.xvg gmx_files/2dproj_PC1_PC2.xvg \
+		gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg \
+		gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg \
+		gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg \
+		gmx_files/temp_press.xvg gmx_files/intra_energies.xvg -mk x \
+		None None None None None '*' None None None None None o None \
+		None None o x ^ -ls None solid dashed dashdot solid solid \
+		None solid dashed solid solid solid None solid solid solid \
+		solid solid solid -panels -save \
+		plotxvg_tests-output/16Alot_of_panels.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/16Alot_of_panels.pdf}
+    \caption{This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.}
+    \label{fig:16}
+\end{figure}
+
+
+Command for Fig. \ref{fig:17}:
+\begin{verbatim}
+plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
+		-save plotxvg_tests-output/17openMMfile.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/17openMMfile.pdf}
+    \caption{This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}
+    \label{fig:17}
+\end{figure}
+
+
+Command for Fig. \ref{fig:18}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
+		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
+		dotted dashdot dashed None -mk None None None o + x ^ + \
+		-panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4 -save \
+		plotxvg_tests-output/18fig1_article.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18fig1_article.pdf}
+    \caption{The exact run for reproducing Fig.1 in the article.}
+    \label{fig:18}
+\end{figure}
+
+
+Command for Fig. \ref{fig:19}:
+\begin{verbatim}
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
+		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
+		-save plotxvg_tests-output/19fig2_article.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19fig2_article.pdf}
+    \caption{The exact run for reproducing Fig.2 in the article.}
+    \label{fig:19}
+\end{figure}
+
+
+Command for Fig. \ref{fig:20}:
+\begin{verbatim}
+plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
+		-ls solid -save plotxvg_tests-output/20fig3_article.pdf \
+		-noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20fig3_article.pdf}
+    \caption{The exact run for reproducing Fig.3 in the article.}
+    \label{fig:20}
+\end{figure}
+
