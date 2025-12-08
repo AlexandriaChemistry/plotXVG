@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	gmx_files/rmsf_residues.xvg
 Command:
-	plotxvg -f gmx_files/rmsf_residues.xvg -bar -save plotxvg_tests-output/013bar.pdf -noshow
+	plotxvg -f gmx_files/rmsf_residues.xvg -bar -save plotxvg_tests-output/13bar.pdf -noshow

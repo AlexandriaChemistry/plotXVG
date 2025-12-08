@@ -1,0 +1,6 @@
+Description:
+	This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.
+File(s) used:
+	gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/2dproj_PC1_PC2.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/temp_press.xvg gmx_files/intra_energies.xvg
+Command:
+	plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/2dproj_PC1_PC2.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/temp_press.xvg gmx_files/intra_energies.xvg -mk x None None None None None '*' None None None None None o None None None o x ^ -ls None solid dashed dashdot solid solid None solid dashed solid solid solid None solid solid solid solid solid solid -panels -save plotxvg_tests-output/16Alot_of_panels.pdf -noshow
