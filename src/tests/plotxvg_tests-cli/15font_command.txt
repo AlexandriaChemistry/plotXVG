@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	gmx_files/2dproj_PC1_PC2.xvg
 Command:
-	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -font Tahoma -save plotxvg_tests-output/15font.pdf -noshow
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -save plotxvg_tests-cli/16font.pdf -noshow -font Tahoma

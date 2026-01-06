@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	other_files/ammonium#chloride.xvg
 Command:
-	plotxvg -f other_files/ammonium#chloride.xvg -ls solid dashed solid None None -mk None None x + . -save plotxvg_tests-output/04mk_and_ls.pdf -noshow
+	plotxvg -f other_files/ammonium#chloride.xvg -save plotxvg_tests-cli/05mk_and_ls.pdf -noshow -ls solid dashed solid None None -mk None None x + .

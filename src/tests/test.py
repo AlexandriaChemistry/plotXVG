@@ -2,32 +2,36 @@ import os
 from pathlib import Path
 import subprocess
 import shutil, sys
-#Check if the user has installed plotxvg first
-if shutil.which("plotxvg") == None:
-   sys.exit("Please install plotxvg first")
-
+# Check if the user has installed plotxvg first
 plotxvg_cmd = "plotxvg"
+if shutil.which(plotxvg_cmd) == None:
+   sys.exit(f"Please install {plotxvg_cmd} first.")
 
-outputdir = Path("plotxvg_tests-output")
-outputdir.mkdir(parents=True, exist_ok=True)
+# Try importing the API as well
+haveAPI = True
+try:
+   from plotxvg import plotxvgRun, plotxvgArgumentParser
+except:
+   print(f"Cannot import {plotxvg_cmd}, please check your installation.")
+   haveAPI = False
 
-#Define examples of using the flags in a list of dictionaries
-examples = [
-    {
-        "name":"default",
-        "description":"This plot is created without flags. Default setting is to make a scatterplot.",
-        "inputfile":"gmx_files/2dproj_PC1_PC2.xvg",
-        "cmd":f"{plotxvg_cmd} -f gmx_files/2dproj_PC1_PC2.xvg -save {outputdir}/00default.pdf -noshow"
-    }
-]
+# Make putput directories for CLI and API operations
+outputdir = {}
+for mode in [ "cli", "api" ]:
+   outputdir[mode] = Path(f"plotxvg_tests-{mode}")
+   outputdir[mode].mkdir(parents=True, exist_ok=True)
 
-#There are multiple ways ad combinations of using the flags. Here they are added more efficiently in a for-loop
+# Define examples of using the flags in a list of dictionaries,
+# there are multiple ways and combinations of using the flags.
+# Here they are added more efficiently in a for-loop
 all_examples = [
+    ("default", "This plot is created without flags. Default setting is to make a scatterplot.",
+     "gmx_files/2dproj_PC1_PC2.xvg", ""),
     ("only_lines", "Using lines", "gmx_files/potential_energy.xvg", "-ls solid"),
     ("markers_5datasets", "One file containing five datasets, without any flags added (will thus be plotted using markers).", "other_files/ammonium#chloride.xvg", ""),
     ("lines_4datasets", "User-defined lines", "gmx_files/gyrate.xvg", "-ls dotted solid dashed dashdot"),
     ("mk_and_ls", "Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined", "other_files/ammonium#chloride.xvg", "-ls solid dashed solid None None -mk None None x + ."),
-    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend\_y.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
+    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend_y.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
 
     ("two_panels", "Using the panels flag, along with -notitles. Also note -sharelabel, which removes axis labels except for the first column and the last row.\n\tSuitable if all subplots shares the same axis labels.", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg", "-panels -sharelabel -notitles -ls solid "),
     ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\n\tFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \n\tfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -tfs 40 -alfs 35 -mksize 20 -mkwidth 4"),
@@ -54,33 +58,55 @@ all_examples = [
     ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -alfs 38 -ls solid")
 
 ]
+
+# Now merge all the examples into the list
 setcount = 1
+examples = []
 for name, desc, inp, flags in all_examples:
-    examples.append({
+   # Add noshow flag so that matplotlib doesn't open every single plot during run
+   outpdf = f"{setcount:02d}{name}.pdf"
+   # Base command for CLI
+   command = f"{plotxvg_cmd} -f {inp} -save {outputdir['cli']}/{outpdf} -noshow"
+   # Base for API call
+   apiflags = [ "-f" ] + inp.split() + [ "-save", f"{outputdir['api']}/{outpdf}", "-noshow" ]
+   # Now add the flags to both
+   for f in flags.split():
+      command += " " + f
+      apiflags.append(f)
+   examples.append({
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
-    })
-    setcount += 1
+        "cli": command,
+        "api": apiflags
+   })
+   setcount += 1
 
 # Run plotxvg with all the examples
 setcount = 0
 for ex in examples:
     print(f"Generating {ex['name']}")
-    cmd = ex["cmd"]
+    cmd = ex["cli"].split()
     
-    # Run command
+    # Run command using CLI
     try:
-        subprocess.run(cmd, shell=True, check=True)
+       subprocess.run(cmd, shell=True, check=True)
     except subprocess.CalledProcessError as e:
-        print(f"Failed to run {cmd}:\n{e}")
-        continue
+       print(f"Failed to run {cmd}:\n{e}")
+       continue
+    if haveAPI:
+       # Run commend through API
+       # Generate argument parser to deal with flags on the CLI
+       parser = plotxvgArgumentParser()
+       # Evaluate the flags ...
+       args   = parser.parse_args(ex["api"])
+       # ... and pass them to the main code
+       plotxvgRun(args)
 
     # Save command text
-    with open(outputdir/f"{setcount:02d}{ex['name']}_command.txt", "w") as f:
+    with open(f"{outputdir['cli']}/{setcount:02d}{ex['name']}_command.txt", "w") as f:
         f.write("Description:\n\t" + ex["description"] + "\n")
         f.write("File(s) used:\n\t" + ex["inputfile"] + "\n")
-        f.write("Command:\n\t" + cmd + "\n")
+        f.write(f"Command:\n\t{ex['cli']}\n")
     setcount += 1
 print("Done.")

@@ -4,4 +4,4 @@ Description:
 File(s) used:
 	act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg
 Command:
-	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' 'PC+GS-elec' -eqax -sharelabel -panels side  -save plotxvg_tests-output/09equalaxes.pdf -noshow
+	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg -save plotxvg_tests-cli/10equalaxes.pdf -noshow -dslegends 'PC-elec' 'PC+GS-elec' -eqax -sharelabel -panels side

@@ -1,0 +1,6 @@
+Description:
+	Using lines
+File(s) used:
+	gmx_files/potential_energy.xvg
+Command:
+	plotxvg -f gmx_files/potential_energy.xvg -save plotxvg_tests-cli/02only_lines.pdf -noshow -ls solid

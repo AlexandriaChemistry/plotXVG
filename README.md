@@ -22,6 +22,7 @@ in the command line. Or, if preferred, you can clone this repository by running
 
 cd into it and then run 
 
+    python setup.py sdist bdist_wheel
     python -m pip install .  
 
 Simple as that! In the plotXVG directory you can find a number of showcase illustrations along with descriptive text files found

@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	gmx_files/2dproj_PC1_PC2.xvg
 Command:
-	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -save plotxvg_tests-output/00default.pdf -noshow
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -save plotxvg_tests-cli/01default.pdf -noshow

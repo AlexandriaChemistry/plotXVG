@@ -1,0 +1,6 @@
+Description:
+	The exact run for reproducing Fig.1 in the article.
+File(s) used:
+	gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg
+Command:
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg -save plotxvg_tests-cli/19fig1_article.pdf -noshow -ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4

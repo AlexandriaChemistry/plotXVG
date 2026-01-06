@@ -4,4 +4,4 @@ Description:
 File(s) used:
 	gmx_files/intra_energies.xvg
 Command:
-	plotxvg -f gmx_files/intra_energies.xvg -colors green purple red -save plotxvg_tests-output/08colors.pdf -noshow
+	plotxvg -f gmx_files/intra_energies.xvg -save plotxvg_tests-cli/09colors.pdf -noshow -colors green purple red

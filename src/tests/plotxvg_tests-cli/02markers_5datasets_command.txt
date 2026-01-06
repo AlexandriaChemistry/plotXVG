@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	other_files/ammonium#chloride.xvg
 Command:
-	plotxvg -f other_files/ammonium#chloride.xvg  -save plotxvg_tests-output/02markers_5datasets.pdf -noshow
+	plotxvg -f other_files/ammonium#chloride.xvg -save plotxvg_tests-cli/03markers_5datasets.pdf -noshow
