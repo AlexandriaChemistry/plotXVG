@@ -1,1 +1,1 @@
-from .plotxvg import plot
+from .plotxvg import plot, version
