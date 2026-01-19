@@ -9,8 +9,6 @@ from matplotlib import rcParams
 from matplotlib.animation import FuncAnimation
 import csv
 
-viewDebug = False
-
 # Hardcoded formatting, Yay!
 defcolors  = ["#1f77b4", "#ff7f0e", "#2ca02c", "#7f0000", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#aec7e8","#ffbb78", "#98df8a", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5"]
 defmarkers = ["o", "+", "v", "x", "^", "<", ">", "s", "p", "*", ".", "D", "d", "h", "H", "|", "_"]
@@ -215,7 +213,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
         #To find delimiter if it is a csv file
         is_csv = filename.endswith(".csv")
         if is_csv:
-            if viewDebug:
+            if args.debug:
                 print("csv file found. Reading...\n")
             sample = inf.read(4096) #reads first line (large arbitrary value)
             dialect = csv.Sniffer().sniff(sample) #locates delimiter
@@ -226,7 +224,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
             headers = next(reader)
             
             if "%" in headers[args.csvx]:
-                if viewDebug:
+                if args.debug:
                     print(f"An x-axis with procentage units (such as Progress) cannot be used. Picking column {args.csvx+1}.\n")
                 col.append(args.csvx+1)
             else:
@@ -288,7 +286,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                         yy -= xx
                     dataset[-1].add_point(xx, yy)
                 except:
-                    if viewDebug:
+                    if args.debug:
                         print("Could not read line '%s'" % line)
             elif numwords > 2:
                 if len(dataset) > 0 and dataset[0].have_dy() and numwords == 3:
@@ -300,7 +298,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                             yy -= xx
                         dataset[0].add_point(xx, yy, dy)
                     except:
-                        if viewDebug:
+                        if args.debug:
                             print("Could not read line '%s'" % line)
                 else:
                     if len(dataset) < numwords-1:
@@ -314,7 +312,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                                 yy -= xx
                             dataset[i].add_point(xx, yy)
                         except:
-                            if viewDebug:
+                            if args.debug:
                                 print("Could not read line '%s'" % line)
                         
     if residual:
@@ -349,10 +347,10 @@ class DataSet:
         except Exception as e:
             print("Error when reading input files:\n", e)
         if len(dataset) == 0:
-            if viewDebug:
+            if args.debug:
                 print("File %s has no data" % filenm)
         else:
-            if viewDebug:
+            if args.debug:
                 print("Read %d labels and %d legends from %d dataset(s) in input file %d" % (len(label), len(legend), len(dataset), setcount+1))
             for d in dataset:
                 self.dataset.append(d)
@@ -417,7 +415,7 @@ class DataSet:
             yymax = args.ymax
         # Now effectuate the options
         if xxmin == xxmax or yymin == yymax:
-            if viewDebug:
+            if args.debug:
                 print("Warning: min and max for x or y are equal, expanding range.")
             xxmin -= xxmin*0.5
             xxmax += xxmax*0.5
@@ -426,7 +424,7 @@ class DataSet:
         if args.equalaxes:
             if xxmin == yymin and xxmax == yymax:
                 myax.set_aspect('equal', adjustable='box')
-            elif viewDebug:
+            elif args.debug:
                 print("Option -eqax overruled by min and max options")
         return xxmin, xxmax, yymin, yymax
 
@@ -463,7 +461,7 @@ class DataSet:
             print_legend = True
         else:
             print_legend = len(self.legend) == len(self.dataset)
-        if viewDebug:
+        if args.debug:
             print("%d legends read in file nr %d" % ( len(self.legend), setcount+1 ) )
         for n in range(len(self.dataset)):
             xy = self.dataset[n]
@@ -496,7 +494,7 @@ class DataSet:
                 if print_legend:
                     mylegend = self.legend[n]
             mycolor=argcolors[n]
-            if viewDebug:
+            if args.debug:
                 print(f"\t mylegend  {n+1} = {mylegend}")
                 print(f"\t mycolor  {n+1} = {mycolor}\n")
 
@@ -509,7 +507,7 @@ class DataSet:
         else:
             print_legend = len(self.legend) == len(self.dataset)
 
-        if viewDebug:
+        if args.debug:
             print("%d legends read in file nr %d" % ( len(self.legend), setcount+1) )
         for n in range(len(self.dataset)):
             mylegend  = None
@@ -524,7 +522,7 @@ class DataSet:
             if args.marker or (args.marker is None and args.linestyle is None):
                 mymarker = argmarkers[n]
             mycolor = argcolors[n]
-            if viewDebug:
+            if args.debug:
                 print(f"\t mylegend  {n+1} = {mylegend}")
                 print(f"\t mymarker {n+1} = {mymarker}")
                 print(f"\t myline   {n+1} = {myline}")
@@ -593,7 +591,7 @@ def plot(filenames, **kwargs):
                 arglegend.append(value)
             else:
                 arglegend.append("")
-        if viewDebug:
+        if args.debug:
             print("Found the following command-line legends {}".format(arglegend), "\n")
     datasets = []
 
@@ -627,7 +625,7 @@ def plot(filenames, **kwargs):
     yymin = min(ymins)
     yymax = max(ymaxs)
 
-    if viewDebug:
+    if args.debug:
         print("Total datasets found: ", total_datasets, "\n")
 
     #Define colors markers and linstyles before going in to loop
@@ -641,7 +639,7 @@ def plot(filenames, **kwargs):
     linestyle = args.linestyle if args.linestyle else None
     # Build a color list long enough for all datasets (maximum is the length of defcolors)     
     if len(colors) < total_datasets:
-        if viewDebug:
+        if args.debug:
             print("More datasets than color inputs. Adding colors.\n")
         # Repeat appending from defcolors
         c = 0
@@ -651,7 +649,7 @@ def plot(filenames, **kwargs):
 
     idx = 0
     # Plot one dataset at a time
-    if args.bar and viewDebug:
+    if args.bar and args.debug:
         print("Doing bar graphs\n")
     for filenumber in range(nfiles):
         # Shortcut for the current axis
@@ -720,7 +718,7 @@ def plot(filenames, **kwargs):
 
         if args.panels and numaxs > 1:
             sublabel = string.ascii_uppercase[filenumber] #Add letter to each subplot
-            if viewDebug:
+            if args.debug:
                 print(f"Setting subplot {filenumber+1} to {sublabel}\n")
             thisax.text(args.subfigureX, args.subfigureY, sublabel,
                     transform=thisax.transAxes, 
@@ -772,7 +770,7 @@ def plot(filenames, **kwargs):
 
     # Finally, printing time
     if args.save:
-        if viewDebug:
+        if args.debug:
             print(f"Saving to: {args.save}")
         # Print just once!
         fig.savefig(args.save, bbox_inches='tight')
@@ -783,8 +781,6 @@ def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
 
     cliargs = CLIArguments()
-    if cliargs.debug:
-        viewDebug = True
 
     if cliargs.filename:
         # takes argparse arguments and converts them to dictionaries 
