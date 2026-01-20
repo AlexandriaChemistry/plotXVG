@@ -1,0 +1,47 @@
+\clearpage
+\section{Using plotXVG}
+plotXVG can be called both from the command line and as an integrated API for in-script analysis. 
+CLI operated plotXVG can be useful for quick plotting of new output data files and opens an external window operated by matplotlib which lets the user interact with the plot.
+API operated plotXVG is suitable for analysis in, for example, a Jupyter notebook and can alleviate plotting of multiple files along with simpler programmatic control over styles, labels and more.
+Both are easily callable but with some small differences.
+
+\subsection{CLI}
+The general command for using plotXVG in the command line is:
+\begin{verbatim}
+    plotxvg -f file(s) [-flags]
+\end{verbatim}
+As apparent, there is only one required argument, namely an input file in .xvg or .csv format. This will produce a scatter plot from your input data. An external window will automatically be opened by matplotlib showing you an interactive plot from which you can save it by the supported buttons in the interactive window. Alternatively, plotXVG has a \texttt{-save} flag which saves the plot after the layout of the plot parts has been regulated. To clarify, the interactive matplotlib window might not show the actual finalized image. If no external window is wished to be opened, \texttt{-noshow} can be added to the command.
+\begin{verbatim}
+    plotxvg -f file(s) -save output.pdf -noshow
+\end{verbatim}
+In order to create for example a line plot, one additional argument \texttt{-ls} (short for linestyle) needs to be added along with a line style in order to tell plotXVG that lines rather than markers are desired.
+\begin{verbatim}
+    plotxvg -f file(s) -ls solid
+\end{verbatim}
+will create a line plot with a solid line. Supported line style are solid, dashed, dotdashed and dotted lines. The user can also by all means combine lines with markers by adding both flags:
+\begin{verbatim}
+    plotxvg -f file(s) -ls dashed -mk +
+\end{verbatim}
+which results in a dashed line with crosses on each data point.
+
+\subsection{API}
+To use plotXVG in a python script or a notebook you need first to import plotXVG as a library:
+\begin{verbatim}
+import plotxvg
+\end{verbatim}
+Then simply call on the \texttt{plot()} function:
+\begin{verbatim}
+plotxvg.plot("file")
+\end{verbatim}
+To add multiple files, put them in a list:
+\begin{verbatim}
+plotxvg.plot(["file1", "file2])
+\end{verbatim}
+Adding flags is done by naming the flag and assert the chosen values as strings in a list:
+\begin{verbatim}
+plotxvg.plot(['file1.xvg','file2.xvg'],
+            linestyle=['solid','dashed'],
+            panels=True,
+            save='plot.pdf')
+\end{verbatim}
+Note that boolean flags do not need to be strings.

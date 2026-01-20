@@ -5,5 +5,7 @@
 \contentsline {subsection}{\numberline {1.1}Prerequisites}{5}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Running the Installation}{5}{subsection.1.2}%
 \contentsline {section}{\numberline {2}Using plotXVG}{6}{section.2}%
-\contentsline {section}{\numberline {3}Additional Flags}{7}{section.3}%
-\contentsline {section}{\numberline {4}Example Plots}{12}{section.4}%
+\contentsline {subsection}{\numberline {2.1}CLI}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}API}{7}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Additional Flags}{8}{section.3}%
+\contentsline {section}{\numberline {4}Example Plots}{13}{section.4}%

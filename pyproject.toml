@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "plotxvg"
-version = "1.1b0"
+version = "1.1b1"
 description = "Batch-generation of publication quality graphs."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -19,7 +19,7 @@ dependencies = [
 requires-python = ">=3.7"
 
 [project.scripts]
-plotxvg = "plotxvg.cli:main"
+plotxvg = "src.cli:main"
 
 [tool.setuptools.packages.find]
 exclude = ["manual", "tests"]
