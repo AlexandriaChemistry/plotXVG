@@ -17,7 +17,7 @@ deflines   = [ 'solid', 'dashed', 'dashdot', 'dotted' ]
 #argsparse for CLI commands
 def CLIArguments():
     parser = argparse.ArgumentParser(
-      prog='plotxvg_edit.py',
+      prog='plotxvg.py',
       description=
 """
 Simple script to quickly plot xy files produced by e.g. ACT or GROMACS.
@@ -536,47 +536,7 @@ class DataSet:
                             label=mylegend, ls=myline, marker=mymarker, color=mycolor, markeredgewidth=args.markeredgewidth/ncolumn)
 
 
-def plot(filenames, **kwargs):
-
-    if isinstance(filenames, str): #Explain
-        filenames = [filenames]
-
-    kwargs["filename"] = filenames #Fill the filename argument with a list of files
-    args = APIArguments(**kwargs)
-
-    # Define the number of columns and files
-    nfiles = len(args.filename) if args.filename else 0
-    ncolumn = 1
-    nrow = 1
-
-    if args.panels:
-        ncolumn = int(math.sqrt(nfiles)) if nfiles > 0 else 1
-        nrow = int(nfiles / ncolumn) if ncolumn > 0 else 1
-        if nfiles % ncolumn != 0:
-            nrow += 1
-        if args.squarefig:
-            xframe = (args.yframe)
-            yframe = (args.yframe / ncolumn) * nrow
-        elif (nfiles == 2 or nfiles == 3) and args.panels == 'top':
-            xframe = args.xframe
-            yframe = args.yframe * (nrow*0.75) #To increase frame height slightly for two and three panels
-        else:
-            xframe = args.xframe
-            yframe = args.yframe
-        if args.panels == 'top':
-            fig, axs = plt.subplots(nrow, ncolumn, figsize=(xframe, yframe), constrained_layout=True) #constrained_layout=True usually more recommended than plt.tight_layout()
-        else:
-            fig, axs = plt.subplots(ncolumn, nrow, figsize=(xframe, yframe), constrained_layout=True)            
-    else:
-        if args.squarefig:
-            xframe = args.squarefig
-            yframe = xframe
-        else:
-            xframe = args.xframe
-            yframe = args.yframe
-        fig, axs = plt.subplots(figsize=(xframe, yframe), constrained_layout=True)
-        axs = np.array([axs])
-
+def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
 
     rcParams['font.family'] = 'sans-serif'
     rcParams['font.sans-serif'] = [args.fontname]
@@ -775,7 +735,63 @@ def plot(filenames, **kwargs):
         # Print just once!
         fig.savefig(args.save, bbox_inches='tight')
         args.save = None
-    
+
+
+def plot(filenames, **kwargs):
+
+    if isinstance(filenames, str): #If only one file is passed, wrap it in a list
+        filenames = [filenames]
+
+    kwargs["filename"] = filenames #Fill the filename argument with a list of files
+    args = APIArguments(**kwargs)
+
+    # Define the number of columns and files
+    nfiles = len(args.filename) if args.filename else 0
+    ncolumn = 1
+    nrow = 1
+
+    if args.panels:
+        ncolumn = int(math.sqrt(nfiles)) if nfiles > 0 else 1
+        nrow = int(nfiles / ncolumn) if ncolumn > 0 else 1
+        if nfiles % ncolumn != 0:
+            nrow += 1
+        if args.squarefig:
+            xframe = (args.yframe)
+            yframe = (args.yframe / ncolumn) * nrow
+        elif (nfiles == 2 or nfiles == 3) and args.panels == 'top':
+            xframe = args.xframe
+            yframe = args.yframe * (nrow*0.75) #To increase frame height slightly for two and three panels
+        else:
+            xframe = args.xframe
+            yframe = args.yframe
+        if args.panels == 'top':
+            fig, axs = plt.subplots(nrow, ncolumn, figsize=(xframe, yframe), constrained_layout=True) #constrained_layout=True usually more recommended than plt.tight_layout()
+        else:
+            fig, axs = plt.subplots(ncolumn, nrow, figsize=(xframe, yframe), constrained_layout=True)            
+    else:
+        if args.squarefig:
+            xframe = args.squarefig
+            yframe = xframe
+        else:
+            xframe = args.xframe
+            yframe = args.yframe
+        fig, axs = plt.subplots(figsize=(xframe, yframe), constrained_layout=True)
+        axs = np.array([axs])
+
+    #Pass on for processing
+    if args.follow:
+        def animate(t):
+            try:
+                for ax in axs.flat: #to avoid stacking of plots 
+                    ax.clear()
+                process_plot(args, fig, axs, nfiles, ncolumn, nrow)
+            except Exception as e:
+                print("Update failed:", e)
+        
+        ani = FuncAnimation(fig, animate, interval=5000)
+        plt.show()
+    else:
+        process_plot(args, fig, axs, nfiles, ncolumn, nrow)
 
 def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
@@ -786,24 +802,14 @@ def main():
         # takes argparse arguments and converts them to dictionaries 
         # and unpacks them, giving them the same structure as 
         # the API operated arguments.
-        allargs = vars(cliargs) #Make into dictionary but
-        filename = allargs.pop("filename") #pass filenames separately
+        dictargs = vars(cliargs) #Make into dictionary but
+        filename = dictargs.pop("filename") #pass filenames separately
 
-        if cliargs.follow:
-            def animate(t):
-                try:
-                    plot(filename, cliargs)
-                    plt.gcf().autofmt_xdate()
-                    plt.tight_layout()
-                except Exception as e:
-                    print("Update failed:", e)
-            ani = FuncAnimation(plt.gcf(), animate, interval=5000)
-        else:
-            try:
-                plot(filename, **allargs)
+        try:
+            plot(filename, **dictargs)
 
-            except Exception as e:
-                print("Plotting failed:", e)
-        if not cliargs.noshow:
-            plt.show()
+        except Exception as e:
+            print("Plotting failed:", e)
+    if not cliargs.noshow:
+        plt.show()
 
