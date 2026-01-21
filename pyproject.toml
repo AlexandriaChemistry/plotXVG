@@ -19,7 +19,7 @@ dependencies = [
 requires-python = ">=3.7"
 
 [project.scripts]
-plotxvg = "src.cli:main"
+plotxvg = "plotxvg.cli:main"
 
 [tool.setuptools.packages.find]
 exclude = ["manual", "tests"]
