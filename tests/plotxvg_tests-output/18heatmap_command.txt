@@ -1,0 +1,6 @@
+Description:
+	Heatmap using matplotlib's pcolormesh
+File(s) used:
+	other_files/gaussian_hill_2d.xvg
+Command:
+	plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save plotxvg_tests-output/18heatmap.pdf -noshow

@@ -5,7 +5,7 @@ This section aims to give an easier understanding of how one can use plotXVG, us
 
 Command for Fig. \ref{fig:00}:
 \begin{verbatim}
-plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -save \
+plotxvg -f gmx_files/rmsd_calpha.xvg -save \
 		plotxvg_tests-output/00default.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
@@ -298,6 +298,32 @@ plotxvg -f gmx_files/rmsd_calpha.xvg \
 
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
+plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save \
+		plotxvg_tests-output/18heatmap.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18heatmap.pdf}
+    \caption{Heatmap using matplotlib's pcolormesh}
+    \label{fig:19}
+\end{figure}
+
+
+Command for Fig. \ref{fig:20}:
+\begin{verbatim}
+plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save \
+		plotxvg_tests-output/19contour.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19contour.pdf}
+    \caption{contour using matplotlib's contourf and contour}
+    \label{fig:20}
+\end{figure}
+
+
+Command for Fig. \ref{fig:21}:
+\begin{verbatim}
 plotxvg -f act_files/COULOMB-PC-elec.xvg \
 		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
 		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
@@ -307,11 +333,28 @@ plotxvg -f act_files/COULOMB-PC-elec.xvg \
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19fig2_article.pdf}
     \caption{The exact run for reproducing Fig.2 in the article.}
-    \label{fig:19}
+    \label{fig:21}
 \end{figure}
 
 
-Command for Fig. \ref{fig:20}:
+Command for Fig. \ref{fig:22}:
+\begin{verbatim}
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
+		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
+		dotted dashdot dashed None -mk None None None o + x ^ + \
+		-panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4 -save \
+		plotxvg_tests-output/20fig1_article.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20fig1_article.pdf}
+    \caption{The exact run for reproducing Fig.1 in the article.}
+    \label{fig:22}
+\end{figure}
+
+
+Command for Fig. \ref{fig:23}:
 \begin{verbatim}
 plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
 		-ls solid -save plotxvg_tests-output/20fig3_article.pdf \
@@ -321,6 +364,35 @@ plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20fig3_article.pdf}
     \caption{The exact run for reproducing Fig.3 in the article.}
-    \label{fig:20}
+    \label{fig:23}
+\end{figure}
+
+
+Command for Fig. \ref{fig:24}:
+\begin{verbatim}
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
+		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
+		-save plotxvg_tests-output/21fig2_article.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/21fig2_article.pdf}
+    \caption{The exact run for reproducing Fig.2 in the article.}
+    \label{fig:24}
+\end{figure}
+
+
+Command for Fig. \ref{fig:25}:
+\begin{verbatim}
+plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
+		-ls solid -save plotxvg_tests-output/22fig3_article.pdf \
+		-noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/22fig3_article.pdf}
+    \caption{The exact run for reproducing Fig.3 in the article.}
+    \label{fig:25}
 \end{figure}
 
