@@ -1,5 +1,5 @@
 # This is a test file for 2D contour plotting
-@    title "Gaussian Contour Test"
+@    title "Gaussian Hill"
 @    xaxis  label "Coordinate X (nm)"
 @    yaxis  label "Coordinate Y (nm)"
 @    s0 legend "Free Energy (kJ/mol)"
