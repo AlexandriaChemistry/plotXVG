@@ -45,3 +45,21 @@ plotxvg.plot(['file1.xvg','file2.xvg'],
             save='plot.pdf')
 \end{verbatim}
 Note that boolean flags do not need to be strings.
+
+\subsection{Creating Heatmaps}
+
+Creating heatmaps in order to study for example free energy landscapes is also supported by plotXVG.
+To create a heatmap from your data, use the heatmap mode by adding the \texttt{-heatmap} flag:
+\begin{verbatim}
+    plotxvg -f file -heatmap
+\end{verbatim}
+In the API, simply set the \texttt{heatmap} parameter to \texttt{True}:
+\begin{verbatim}
+plotxvg.plot("file.xvg", heatmap=True)
+\end{verbatim}
+The input file should contain three columns: x-coordinates, y-coordinates, and values to be mapped to the color scale. 
+This is particularly useful for visualizing free energy landscapes and other 2D scalar field data. 
+You can also create plots with contour lines instead using the flag \texttt{-contour}. 
+Additional flags to expand the use of heatmap plotting are what colormap to prefer with \texttt{cmap} (default is \textit{viridis})
+and the number of levels in the contour parsed with the flag \texttt{-levels}. Default number of levels is 15. 
+See example plots in Figures \ref{fig:19} and \ref{fig:20}.

@@ -17,5 +17,10 @@
 \contentsline {figure}{\numberline {17}{\ignorespaces This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.}}{26}{figure.caption.21}%
 \contentsline {figure}{\numberline {18}{\ignorespaces This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}}{26}{figure.caption.22}%
 \contentsline {figure}{\numberline {19}{\ignorespaces The exact run for reproducing Fig.1 in the article.}}{27}{figure.caption.23}%
-\contentsline {figure}{\numberline {20}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{28}{figure.caption.24}%
-\contentsline {figure}{\numberline {21}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{28}{figure.caption.25}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Heatmap using matplotlib's pcolormesh}}{28}{figure.caption.24}%
+\contentsline {figure}{\numberline {21}{\ignorespaces contour using matplotlib's contourf and contour}}{28}{figure.caption.25}%
+\contentsline {figure}{\numberline {22}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{29}{figure.caption.26}%
+\contentsline {figure}{\numberline {23}{\ignorespaces The exact run for reproducing Fig.1 in the article.}}{30}{figure.caption.27}%
+\contentsline {figure}{\numberline {24}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{30}{figure.caption.28}%
+\contentsline {figure}{\numberline {25}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{31}{figure.caption.29}%
+\contentsline {figure}{\numberline {26}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{31}{figure.caption.30}%
