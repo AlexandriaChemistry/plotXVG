@@ -1,0 +1,6 @@
+Description:
+	A xvg file containing standard deviations is automatically incorporated as errorbars.
+File(s) used:
+	gmx_files/resarea.xvg
+Command:
+	plotxvg -f gmx_files/resarea.xvg -ls dotted -mk o -save plotxvg_tests-output/15std_plot.pdf -noshow

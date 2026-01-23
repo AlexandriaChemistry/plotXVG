@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	other_files/gaussian_hill_2d.xvg
 Command:
-	plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save plotxvg_tests-output/19contour.pdf -noshow
+	plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save plotxvg_tests-output/20contour.pdf -noshow

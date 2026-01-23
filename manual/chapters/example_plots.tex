@@ -233,18 +233,31 @@ plotxvg -f other_files/rmsf_res_66-76.xvg \
 
 Command for Fig. \ref{fig:15}:
 \begin{verbatim}
-plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -font Tahoma -save \
-		plotxvg_tests-output/15font.pdf -noshow
+plotxvg -f gmx_files/resarea.xvg -ls dotted -mk o -save \
+		plotxvg_tests-output/15std_plot.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/15font.pdf}
-    \caption{Change the font for all texts. Here it is changed to 'Tahoma'.}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/15std_plot.pdf}
+    \caption{A xvg file containing standard deviations is automatically incorporated as errorbars.}
     \label{fig:15}
 \end{figure}
 
 
 Command for Fig. \ref{fig:16}:
+\begin{verbatim}
+plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -font Tahoma -save \
+		plotxvg_tests-output/16font.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/16font.pdf}
+    \caption{Change the font for all texts. Here it is changed to 'Tahoma'.}
+    \label{fig:16}
+\end{figure}
+
+
+Command for Fig. \ref{fig:17}:
 \begin{verbatim}
 plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg \
 		gmx_files/potential_energy.xvg gmx_files/2dproj_PC1_PC2.xvg \
@@ -256,42 +269,25 @@ plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg \
 		None None o x ^ -ls None solid dashed dashdot solid solid \
 		None solid dashed solid solid solid None solid solid solid \
 		solid solid solid -panels -save \
-		plotxvg_tests-output/16Alot_of_panels.pdf -noshow
+		plotxvg_tests-output/17Alot_of_panels.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/16Alot_of_panels.pdf}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/17Alot_of_panels.pdf}
     \caption{This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.}
-    \label{fig:16}
-\end{figure}
-
-
-Command for Fig. \ref{fig:17}:
-\begin{verbatim}
-plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
-		-save plotxvg_tests-output/17openMMfile.pdf -noshow
-\end{verbatim}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/17openMMfile.pdf}
-    \caption{This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}
     \label{fig:17}
 \end{figure}
 
 
 Command for Fig. \ref{fig:18}:
 \begin{verbatim}
-plotxvg -f gmx_files/rmsd_calpha.xvg \
-		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
-		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
-		dotted dashdot dashed None -mk None None None o + x ^ + \
-		-panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4 -save \
-		plotxvg_tests-output/18fig1_article.pdf -noshow
+plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
+		-save plotxvg_tests-output/18openMMfile.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18fig1_article.pdf}
-    \caption{The exact run for reproducing Fig.1 in the article.}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18openMMfile.pdf}
+    \caption{This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}
     \label{fig:18}
 \end{figure}
 
@@ -299,11 +295,11 @@ plotxvg -f gmx_files/rmsd_calpha.xvg \
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
 plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save \
-		plotxvg_tests-output/18heatmap.pdf -noshow
+		plotxvg_tests-output/19heatmap.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18heatmap.pdf}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19heatmap.pdf}
     \caption{Heatmap using matplotlib's pcolormesh}
     \label{fig:19}
 \end{figure}
@@ -312,11 +308,11 @@ plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save \
 Command for Fig. \ref{fig:20}:
 \begin{verbatim}
 plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save \
-		plotxvg_tests-output/19contour.pdf -noshow
+		plotxvg_tests-output/20contour.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19contour.pdf}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20contour.pdf}
     \caption{contour using matplotlib's contourf and contour}
     \label{fig:20}
 \end{figure}
@@ -324,32 +320,32 @@ plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save \
 
 Command for Fig. \ref{fig:21}:
 \begin{verbatim}
-plotxvg -f act_files/COULOMB-PC-elec.xvg \
-		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
-		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
-		-save plotxvg_tests-output/19fig2_article.pdf -noshow
+plotxvg -f gmx_files/rmsd_calpha.xvg \
+		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
+		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
+		dotted dashdot dashed None -mk None None None o + x ^ + \
+		-panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4 -save \
+		plotxvg_tests-output/21fig1_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19fig2_article.pdf}
-    \caption{The exact run for reproducing Fig.2 in the article.}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/21fig1_article.pdf}
+    \caption{The exact run for reproducing Fig.1 in the article.}
     \label{fig:21}
 \end{figure}
 
 
 Command for Fig. \ref{fig:22}:
 \begin{verbatim}
-plotxvg -f gmx_files/rmsd_calpha.xvg \
-		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
-		gmx_files/2dproj_PC1_PC2.xvg -ls solid solid solid solid \
-		dotted dashdot dashed None -mk None None None o + x ^ + \
-		-panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4 -save \
-		plotxvg_tests-output/20fig1_article.pdf -noshow
+plotxvg -f act_files/COULOMB-PC-elec.xvg \
+		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
+		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
+		-save plotxvg_tests-output/22fig2_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20fig1_article.pdf}
-    \caption{The exact run for reproducing Fig.1 in the article.}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/22fig2_article.pdf}
+    \caption{The exact run for reproducing Fig.2 in the article.}
     \label{fig:22}
 \end{figure}
 
@@ -357,42 +353,13 @@ plotxvg -f gmx_files/rmsd_calpha.xvg \
 Command for Fig. \ref{fig:23}:
 \begin{verbatim}
 plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
-		-ls solid -save plotxvg_tests-output/20fig3_article.pdf \
+		-ls solid -save plotxvg_tests-output/23fig3_article.pdf \
 		-noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20fig3_article.pdf}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/23fig3_article.pdf}
     \caption{The exact run for reproducing Fig.3 in the article.}
     \label{fig:23}
-\end{figure}
-
-
-Command for Fig. \ref{fig:24}:
-\begin{verbatim}
-plotxvg -f act_files/COULOMB-PC-elec.xvg \
-		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
-		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
-		-save plotxvg_tests-output/21fig2_article.pdf -noshow
-\end{verbatim}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/21fig2_article.pdf}
-    \caption{The exact run for reproducing Fig.2 in the article.}
-    \label{fig:24}
-\end{figure}
-
-
-Command for Fig. \ref{fig:25}:
-\begin{verbatim}
-plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -alfs 38 \
-		-ls solid -save plotxvg_tests-output/22fig3_article.pdf \
-		-noshow
-\end{verbatim}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/22fig3_article.pdf}
-    \caption{The exact run for reproducing Fig.3 in the article.}
-    \label{fig:25}
 \end{figure}
 

@@ -43,6 +43,8 @@ all_examples = [
     ("bar", "Histogram with one dataset", "gmx_files/rmsf_residues.xvg", "-bar"),
     ("threebars", "Histogram with three datasets", "other_files/rmsf_res_66-76.xvg other_files/rmsf_res_66-76x1.2.xvg other_files/rmsf_res_66-76x0.8.xvg", "-bar"),
 
+    ("std_plot", "A xvg file containing standard deviations is automatically incorporated as errorbars.", "gmx_files/resarea.xvg", "-ls dotted -mk o"),
+
     ("font","Change the font for all texts. Here it is changed to 'Tahoma'.", "gmx_files/2dproj_PC1_PC2.xvg", "-font Tahoma"),
 
     ("Alot_of_panels", "This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.", "gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/2dproj_PC1_PC2.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/temp_press.xvg gmx_files/intra_energies.xvg", "-mk x None None None None None '*' None None None None None o None None None o x ^ -ls None solid dashed dashdot solid solid None solid dashed solid solid solid None solid solid solid solid solid solid -panels"),

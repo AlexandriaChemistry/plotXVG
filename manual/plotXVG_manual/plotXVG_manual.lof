@@ -13,14 +13,12 @@
 \contentsline {figure}{\numberline {13}{\ignorespaces Plots the residual of the data, meaning x is substracted from y for all data sets. Statistics are based on original train and test values and will not be affected by the residual flag.}}{23}{figure.caption.17}%
 \contentsline {figure}{\numberline {14}{\ignorespaces Histogram with one dataset}}{24}{figure.caption.18}%
 \contentsline {figure}{\numberline {15}{\ignorespaces Histogram with three datasets}}{24}{figure.caption.19}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Change the font for all texts. Here it is changed to 'Tahoma'.}}{25}{figure.caption.20}%
-\contentsline {figure}{\numberline {17}{\ignorespaces This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.}}{26}{figure.caption.21}%
-\contentsline {figure}{\numberline {18}{\ignorespaces This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}}{26}{figure.caption.22}%
-\contentsline {figure}{\numberline {19}{\ignorespaces The exact run for reproducing Fig.1 in the article.}}{27}{figure.caption.23}%
+\contentsline {figure}{\numberline {16}{\ignorespaces A xvg file containing standard deviations is automatically incorporated as errorbars.}}{25}{figure.caption.20}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Change the font for all texts. Here it is changed to 'Tahoma'.}}{26}{figure.caption.21}%
+\contentsline {figure}{\numberline {18}{\ignorespaces This demonstrates the dynamics of the program showing that even twelve files can be plotted simultaneously.}}{27}{figure.caption.22}%
+\contentsline {figure}{\numberline {19}{\ignorespaces This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}}{27}{figure.caption.23}%
 \contentsline {figure}{\numberline {20}{\ignorespaces Heatmap using matplotlib's pcolormesh}}{28}{figure.caption.24}%
-\contentsline {figure}{\numberline {21}{\ignorespaces contour using matplotlib's contourf and contour}}{28}{figure.caption.25}%
-\contentsline {figure}{\numberline {22}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{29}{figure.caption.26}%
-\contentsline {figure}{\numberline {23}{\ignorespaces The exact run for reproducing Fig.1 in the article.}}{30}{figure.caption.27}%
-\contentsline {figure}{\numberline {24}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{30}{figure.caption.28}%
-\contentsline {figure}{\numberline {25}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{31}{figure.caption.29}%
-\contentsline {figure}{\numberline {26}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{31}{figure.caption.30}%
+\contentsline {figure}{\numberline {21}{\ignorespaces contour using matplotlib's contourf and contour}}{29}{figure.caption.25}%
+\contentsline {figure}{\numberline {22}{\ignorespaces The exact run for reproducing Fig.1 in the article.}}{30}{figure.caption.26}%
+\contentsline {figure}{\numberline {23}{\ignorespaces The exact run for reproducing Fig.2 in the article.}}{30}{figure.caption.27}%
+\contentsline {figure}{\numberline {24}{\ignorespaces The exact run for reproducing Fig.3 in the article.}}{31}{figure.caption.28}%

@@ -1,0 +1,6 @@
+Description:
+	The exact run for reproducing Fig.2 in the article.
+File(s) used:
+	act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg
+Command:
+	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' 'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side -save plotxvg_tests-output/22fig2_article.pdf -noshow
