@@ -364,7 +364,7 @@ class DataSet:
         r2 = 1 - ss_res / ss_tot if ss_tot != 0 else np.nan
         return rmsd, r2
 
-    def read(self, args, filenm:str, residual:bool, filelabel:bool, arglegend:str, setcount):
+    def read(self, args, filenm:str, residual:bool, filelabel:bool, arglegend, setcount):
         try:
             legend, label, dataset = read_xvg(args, filenm, residual, filelabel)
         except Exception as e:
@@ -388,10 +388,15 @@ class DataSet:
             if len(legend) > 0:
                 for l in range(len(legend)):
                     if arglegend:
-                        self.legend.append(texify(arglegend + " " + legend[l]))
+                        if len(arglegend) < len(legend):
+                            for i in range(len(legend) - len(arglegend)):
+                                arglegend.append("")
+                        self.legend.append(texify(arglegend[l] + " " + legend[l]))
                     else:
                         self.legend.append(texify(legend[l]))
             elif arglegend:
+                for l in range(len(arglegend)):
+                    self.legend.append(texify(arglegend[l]))
                 self.legend.append(texify(arglegend))
             if args.stats:
                 #Fetch the dataset without residual
@@ -475,12 +480,12 @@ class DataSet:
         else:
             thisax.set_ylabel(texify(self.labels["ylabel"]), fontsize=args.axislabelfontsize/ncolumn, labelpad=args.axislabelfontsize/ncolumn*0.5)
         # Legend box placement
-        if args.legendfontsize > 0 and len(self.legend) > 0:
+        if args.legendfontsize > 0 and len(self.legend) > 0 and len(self.dataset[0].z) == 0: #.z added so that legend ends up being the colorbar legend
             thisax.legend(loc='upper left', bbox_to_anchor=(args.legend_x, args.legend_y), fontsize=args.legendfontsize/ncolumn)
 
     def do_bars(self, thisax, argcolors, idx, total_datasets, setcount, args, group_width):
         print_legend = False
-        if args.datasetlegends:
+        if args.datasetlegends or (hasattr(self.dataset[0], "dy") and self.legend):
             print_legend = True
         else:
             print_legend = len(self.legend) == len(self.dataset)
@@ -525,7 +530,7 @@ class DataSet:
 
     def do_lines(self, thisax, argcolors, arglines, argmarkers, setcount, args, ncolumn):
         print_legend = False
-        if args.datasetlegends:
+        if args.datasetlegends or (hasattr(self.dataset[0], "dy") and self.legend):
             print_legend = True
         else:
             print_legend = len(self.legend) == len(self.dataset)
@@ -648,20 +653,24 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
 
     # Create new dataset for each file BEFORE plotting
     total_datasets = 0
+    nrdatasets = 0
     xmins = []
     xmaxs = []
     ymins = []
     ymaxs = []
     for filenumber in range(nfiles):
         datasets.append(DataSet())
-        if len(arglegend) >= filenumber+1:
-            mylegend = arglegend[filenumber]
-        else:
-            mylegend = None
+        mylegend = arglegend[nrdatasets:] if arglegend[nrdatasets:] else None
+        if mylegend is not None:
+            # Replace None with empty string
+            for i in range(len(mylegend)):
+                if mylegend[i] is None:
+                    mylegend[i] = ""
         datasets[-1].read(args, args.filename[filenumber], args.residual,
                           args.filelabel, mylegend, filenumber)
-        total_datasets += len(datasets[-1].dataset)
-        
+        nrdatasets = len(datasets[-1].dataset)
+        total_datasets += nrdatasets
+
         # Shortcut for the current axis
         thisax = axs.flat[filenumber % numaxs]
         #Fetch mininmum and maximum values
@@ -699,6 +708,7 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
             c += 1
 
     idx = 0
+    nrdatasets = 0
     # Plot one dataset at a time
     if args.bar and args.debug:
         print("Doing bar graphs\n")
