@@ -263,7 +263,9 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
             nleg = line.find("@")
             if nleg >= 0:
                 myline = line[nleg+1:].strip()
-                if myline.find("TYPE") >= 0 and myline.find("loctype") < 0:
+                if myline.find("type") >= 0 and myline.find("loctype") < 0:
+                    dataset.append(xvgDataSet(myline))
+                elif myline.find("xydy") >= 0: #Specific to xvg files including standard devations
                     dataset.append(xvgDataSet(myline))
                 elif len(myline) > 0:
                     labkey, legval = interpret_legend(myline)
