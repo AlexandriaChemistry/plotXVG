@@ -1,6 +1,6 @@
 Description:
-	contour using matplotlib's contourf and contour
+	Contour using matplotlib's contourf and contour
 File(s) used:
-	other_files/gaussian_hill_2d.xvg
+	other_files/test_normaldist.xvg
 Command:
-	plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save plotxvg_tests-output/20contour.pdf -noshow
+	plotxvg -f other_files/test_normaldist.xvg -contour -save plotxvg_tests-output/20contour.pdf -noshow

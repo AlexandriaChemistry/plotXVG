@@ -1,0 +1,6 @@
+Description:
+	Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.
+File(s) used:
+	other_files/test_normaldist.xvg
+Command:
+	plotxvg -f other_files/test_normaldist.xvg -heatmap -save plotxvg_tests-output/19heatmap_wo_z.pdf -noshow

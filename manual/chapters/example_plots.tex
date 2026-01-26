@@ -294,26 +294,26 @@ plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
 
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
-plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save \
-		plotxvg_tests-output/19heatmap.pdf -noshow
+plotxvg -f other_files/test_normaldist.xvg -heatmap -save \
+		plotxvg_tests-output/19heatmap_wo_z.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19heatmap.pdf}
-    \caption{Heatmap using matplotlib's pcolormesh}
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/19heatmap_wo_z.pdf}
+    \caption{Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.}
     \label{fig:19}
 \end{figure}
 
 
 Command for Fig. \ref{fig:20}:
 \begin{verbatim}
-plotxvg -f other_files/gaussian_hill_2d.xvg -contour -save \
+plotxvg -f other_files/test_normaldist.xvg -contour -save \
 		plotxvg_tests-output/20contour.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/20contour.pdf}
-    \caption{contour using matplotlib's contourf and contour}
+    \caption{Contour using matplotlib's contourf and contour}
     \label{fig:20}
 \end{figure}
 

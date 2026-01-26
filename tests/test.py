@@ -51,8 +51,9 @@ all_examples = [
 
     ("openMMfile", "This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -ls solid"),
 
-    ("heatmap", "Heatmap using matplotlib's pcolormesh", "other_files/gaussian_hill_2d.xvg", "-heatmap"),
-    ("contour", "contour using matplotlib's contourf and contour", "other_files/gaussian_hill_2d.xvg", "-contour"),
+    ("heatmap_wo_z", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap"),
+    ("contour", "Contour using matplotlib's contourf and contour", "other_files/test_normaldist.xvg", "-contour"),
+
     ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/2dproj_PC1_PC2.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -tfs 45 -alfs 40 -mksize 20 -mkwidth 4"),
     ("fig2_article","The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side"),
     ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -alfs 38 -ls solid")
