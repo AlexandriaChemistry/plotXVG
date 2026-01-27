@@ -1,6 +1,6 @@
 Description:
-	Heatmap using matplotlib's pcolormesh
+	Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.
 File(s) used:
-	other_files/gaussian_hill_2d.xvg
+	other_files/test_normaldist.xvg
 Command:
-	plotxvg -f other_files/gaussian_hill_2d.xvg -heatmap -save plotxvg_tests-output/19heatmap.pdf -noshow
+	plotxvg -f other_files/test_normaldist.xvg -heatmap -save plotxvg_tests-output/19heatmap.pdf -noshow

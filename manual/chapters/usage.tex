@@ -44,10 +44,10 @@ plotxvg.plot(['file1.xvg','file2.xvg'],
             panels=True,
             save='plot.pdf')
 \end{verbatim}
+Both long and short flag names are supported, just like in the CLI. 
 Note that boolean flags do not need to be strings.
 
 \subsection{Creating Heatmaps}
-
 Creating heatmaps in order to study for example free energy landscapes is also supported by plotXVG.
 To create a heatmap from your data, use the heatmap mode by adding the \texttt{-heatmap} flag:
 \begin{verbatim}
@@ -57,9 +57,22 @@ In the API, simply set the \texttt{heatmap} parameter to \texttt{True}:
 \begin{verbatim}
 plotxvg.plot("file.xvg", heatmap=True)
 \end{verbatim}
-The input file should contain three columns: x-coordinates, y-coordinates, and values to be mapped to the color scale. 
 This is particularly useful for visualizing free energy landscapes and other 2D scalar field data. 
+Gibbs free energy is calculated with the equation:
+\begin{equation}
+    G = k_{\mathrm{B}}T * \ln (P)
+\end{equation}
+where $k_B$ is the Boltzmann constant, $T$ is the absolute temperature and $P$ is the probability density.
+
+The input file can either contain two columns of raw data, or three columns of 2D data, with the third column being values to be mapped to the color scale. 
 You can also create plots with contour lines instead using the flag \texttt{-contour}. 
-Additional flags to expand the use of heatmap plotting are what colormap to prefer with \texttt{cmap} (default is \textit{viridis})
+
+plotXVG also adds another feature \texttt{-kde} for estimating the probability density function namely the
+kernel density estimation (kde) using \texttt{stats.gaussian\_kde} from the SciPy package. This can be 
+beneficial if the data consist of very few data points. Adding the flag \texttt{-showdots} will additionally do a
+scatterplot on top of the density map.
+
+Additional flags to expand the use of heatmap plotting are what colormap to prefer with \texttt{cmap} (default is \textit{viridis}),
+the number of bins for the free energy calculations (default 50)
 and the number of levels in the contour parsed with the flag \texttt{-levels}. Default number of levels is 15. 
-See example plots in Figures \ref{fig:19} and \ref{fig:20}.
+See example plots of using heatmap and contour with kde in Figures \ref{fig:19} and \ref{fig:20}.

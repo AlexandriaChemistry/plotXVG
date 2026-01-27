@@ -1,0 +1,6 @@
+Description:
+	Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.
+File(s) used:
+	gmx_files/2dproj_PC1_PC2.xvg
+Command:
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -showdots -save plotxvg_tests-output/20contour_kde.pdf -noshow

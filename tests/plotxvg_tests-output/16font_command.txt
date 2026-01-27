@@ -1,6 +1,6 @@
 Description:
 	Change the font for all texts. Here it is changed to 'Tahoma'.
 File(s) used:
-	gmx_files/2dproj_PC1_PC2.xvg
+	gmx_files/rmsd_backbone.xvg
 Command:
-	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -font Tahoma -save plotxvg_tests-output/16font.pdf -noshow
+	plotxvg -f gmx_files/rmsd_backbone.xvg -font Tahoma -save plotxvg_tests-output/16font.pdf -noshow
