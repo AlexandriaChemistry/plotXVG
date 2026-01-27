@@ -717,7 +717,7 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
     ymaxs = []
     for filenumber in range(nfiles):
         datasets.append(DataSet())
-        mylegend = arglegend[nrdatasets:] if arglegend[nrdatasets:] else None
+        mylegend = arglegend[total_datasets:] if arglegend[total_datasets:] else None
         if mylegend is not None:
             # Replace None with empty string
             for i in range(len(mylegend)):
@@ -913,8 +913,8 @@ def plot(filenames, **kwargs):
     nfiles = len(args.filename) if args.filename else 0
     ncolumn = 1
     nrow = 1
-
-    if args.panels:
+    
+    if args.panels and len(args.filename) > 1:
         ncolumn = int(math.sqrt(nfiles)) if nfiles > 0 else 1
         nrow = int(nfiles / ncolumn) if ncolumn > 0 else 1
         if nfiles % ncolumn != 0:
@@ -933,6 +933,8 @@ def plot(filenames, **kwargs):
         else:
             fig, axs = plt.subplots(ncolumn, nrow, figsize=(xframe, yframe), constrained_layout=True)            
     else:
+        if args.panels:
+            print("Only one file in input. Will ignore -panels command")
         if args.squarefig:
             xframe = args.squarefig
             yframe = xframe
