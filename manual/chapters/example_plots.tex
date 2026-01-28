@@ -289,8 +289,8 @@ plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
 
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
-plotxvg -f other_files/test_normaldist.xvg -heatmap -save \
-		plotxvg_tests-output/19heatmap.pdf -noshow
+plotxvg -f other_files/test_normaldist.xvg -heatmap -allfs \
+		12 -save plotxvg_tests-output/19heatmap.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
@@ -303,8 +303,8 @@ plotxvg -f other_files/test_normaldist.xvg -heatmap -save \
 Command for Fig. \ref{fig:20}:
 \begin{verbatim}
 plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde \
-		-showdots -save plotxvg_tests-output/20contour_kde.pdf \
-		-noshow
+		-showdots -allfs 12 -save \
+		plotxvg_tests-output/20contour_kde.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering

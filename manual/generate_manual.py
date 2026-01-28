@@ -88,3 +88,9 @@ subprocess.run([
 "-jobname=plotXVG_manual",
 "main.tex"
 ])
+filenm = "plotXVG_manual"
+print("Removing temp files.")
+os.remove(f"{filenm}/{filenm}.aux")
+os.remove(f"{filenm}/{filenm}.lof")
+os.remove(f"{filenm}/{filenm}.out")
+os.remove(f"{filenm}/{filenm}.toc")
