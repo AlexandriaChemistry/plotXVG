@@ -614,7 +614,8 @@ class DataSet:
         cbar.ax.tick_params(labelsize=args.tickfontsize+args.allfontsizes)
 
         if args.kde and args.showdots:
-            thisax.scatter(self.dataset[setcount].x, self.dataset[setcount].y, color="white", edgecolor="black")
+            thisax.plot(self.dataset[setcount].x, self.dataset[setcount].y, markersize=args.markersize,
+                        label=mylegend, linestyle="None", marker="o", color="white", markeredgecolor="black", markeredgewidth=args.markeredgewidth)
 
     ####### Helper methods for heatmaps ######### 
     def _make_grid(self, setcount): # to create meshgrids for the heatmaps
