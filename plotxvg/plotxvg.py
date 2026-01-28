@@ -959,6 +959,8 @@ def plot(filenames, **kwargs):
         plt.show()
     else:
         process_plot(args, fig, axs, nfiles, ncolumn, nrow)
+    if not args.noshow:
+        plt.show()
 
 def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
@@ -977,6 +979,4 @@ def main():
 
         except Exception as e:
             print("Plotting failed:", e)
-    if not cliargs.noshow:
-        plt.show()
 
