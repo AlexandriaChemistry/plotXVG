@@ -610,7 +610,7 @@ class DataSet:
         # Add Colorbar (needs reference to figure)
         fig = thisax.get_figure()
         cbar = fig.colorbar(plot_obj, ax=thisax)
-        cbar.set_label("Free Energy (kJ/mol)", fontsize=args.axislabelfontsize+args.allfontsizes)
+        cbar.set_label("Free Energy (kJ/mol)", fontsize=args.axislabelfontsize+args.allfontsizes, labelpad=10)
         cbar.ax.tick_params(labelsize=args.tickfontsize+args.allfontsizes)
 
         if args.kde and args.showdots:
@@ -670,7 +670,7 @@ class DataSet:
             kBT = 2.49 #Make into flag?
             Z[Z == 0] = np.nan
             Z = -kBT * np.log(Z)
-
+            Z -= np.nanmin(Z) #Set lowest energy to zero (and skips nan values)
         else:
             z, xedges, yedges = np.histogram2d(x, y, bins=args.bins, density=True) #creates histogram from x and y, density =True creates prob density like gmx sham
 
@@ -683,9 +683,9 @@ class DataSet:
             #compute gibbs free energy: G = -kBT * log(P)
             kBT = 2.49
             z[z == 0] = np.nan
-            G = -kBT * np.log(z)
-
-            Z = G.T
+            Z = -kBT * np.log(z)
+            Z -= np.nanmin(Z) 
+            Z = Z.T
 
         return X, Y, Z
     #################################
