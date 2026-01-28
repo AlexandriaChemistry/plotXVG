@@ -51,8 +51,8 @@ all_examples = [
 
     ("openMMfile", "This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -ls solid"),
 
-    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap"),
-    ("contour_kde", "Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots"),
+    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap -allfs 12"),
+    ("contour_kde", "Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots -allfs 12"),
 
     ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/rmsf_residues.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -allfs 6"),
     ("fig2_article", "The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side"),
