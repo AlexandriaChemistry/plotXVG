@@ -604,17 +604,18 @@ class DataSet:
             plot_obj = contf
         else:
             # Heatmap using pcolormesh 
-            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.cmap, shading='auto')
+            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.cmap, shading='auto', rasterized=True)
             plot_obj = pcolmesh
 
         # Add Colorbar (needs reference to figure)
         fig = thisax.get_figure()
         cbar = fig.colorbar(plot_obj, ax=thisax)
-        cbar.set_label("Free Energy (kJ/mol)", fontsize=args.axislabelfontsize+args.allfontsizes)
+        cbar.set_label("Free Energy (kJ/mol)", fontsize=args.axislabelfontsize+args.allfontsizes, labelpad=10)
         cbar.ax.tick_params(labelsize=args.tickfontsize+args.allfontsizes)
 
-        if args.kde and args.showdots:
-            thisax.scatter(self.dataset[setcount].x, self.dataset[setcount].y, color="white", edgecolor="black")
+        if args.showdots:
+            thisax.plot(self.dataset[setcount].x, self.dataset[setcount].y, markersize=args.markersize,
+                        label=mylegend, linestyle="None", marker="o", color="white", markeredgecolor="black", markeredgewidth=args.markeredgewidth)
 
     ####### Helper methods for heatmaps ######### 
     def _make_grid(self, setcount): # to create meshgrids for the heatmaps
@@ -669,7 +670,7 @@ class DataSet:
             kBT = 2.49 #Make into flag?
             Z[Z == 0] = np.nan
             Z = -kBT * np.log(Z)
-
+            Z -= np.nanmin(Z) #Set lowest energy to zero (and skips nan values)
         else:
             z, xedges, yedges = np.histogram2d(x, y, bins=args.bins, density=True) #creates histogram from x and y, density =True creates prob density like gmx sham
 
@@ -682,9 +683,9 @@ class DataSet:
             #compute gibbs free energy: G = -kBT * log(P)
             kBT = 2.49
             z[z == 0] = np.nan
-            G = -kBT * np.log(z)
-
-            Z = G.T
+            Z = -kBT * np.log(z)
+            Z -= np.nanmin(Z) 
+            Z = Z.T
 
         return X, Y, Z
     #################################
@@ -958,6 +959,8 @@ def plot(filenames, **kwargs):
         plt.show()
     else:
         process_plot(args, fig, axs, nfiles, ncolumn, nrow)
+    if not args.noshow:
+        plt.show()
 
 def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
@@ -976,6 +979,4 @@ def main():
 
         except Exception as e:
             print("Plotting failed:", e)
-    if not cliargs.noshow:
-        plt.show()
 
