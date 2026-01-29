@@ -604,7 +604,7 @@ class DataSet:
             plot_obj = contf
         else:
             # Heatmap using pcolormesh 
-            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.cmap, shading='auto')
+            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.cmap, shading='auto', rasterized=True)
             plot_obj = pcolmesh
 
         # Add Colorbar (needs reference to figure)
