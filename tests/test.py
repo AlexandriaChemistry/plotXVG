@@ -27,7 +27,7 @@ all_examples = [
     ("markers_5datasets", "One file containing five datasets, without any flags added (will thus be plotted using markers).", "other_files/ammonium#chloride.xvg", ""),
     ("lines_4datasets", "User-defined lines", "gmx_files/gyrate.xvg", "-ls dotted solid dashed dashdot"),
     ("mk_and_ls", "Both markers and linetyles combined in the same plot. Note how markers and lines can be used separately and combined", "other_files/ammonium#chloride.xvg", "-ls solid dashed solid None None -mk None None x + ."),
-    ("move_legendbox", "Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend\_y.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
+    ("move_legendbox", "Moving the legendbox to the right. Can also be done along the y-axis.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
 
     ("two_panels", "Using the panels flag, along with -notitles. Also note -sharelabel, which removes axis labels except for the first column and the last row.\n\tSuitable if all subplots shares the same axis labels.", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg", "-panels -sharelabel -notitles -ls solid "),
     ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\n\tFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \n\tfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg", "-ls solid solid solid solid dotted dashdot dashed solid -mk None None None o + x ^ None -panels -tfs 40 -axfs 35 -mksize 20 -mkwidth 4"),
@@ -51,12 +51,13 @@ all_examples = [
 
     ("openMMfile", "This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -ls solid"),
 
-    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap -allfs 12"),
-    ("contour_kde", "Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots -allfs 12"),
+    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap"),
+    ("contour_kde", "Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots"),
 
-    ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/rmsf_residues.xvg", "-ls solid solid solid solid dotted dashdot dashed None -mk None None None o + x ^ + -panels -allfs 6"),
-    ("fig2_article", "The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side"),
-    ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -axfs 38 -ls solid"),
+    ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg", "--linestyle solid None solid --marker None . o -panels top --allfontsizes 6"),
+    ("fig2_article", "The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC-elec' 'PC+GS-elec' 'PC+GS-elec' --legendfontsize 18 --equalaxes -panels side -sharelabel -stats"),
+    ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/test_normaldist.xvg", "-heatmap -cmap inferno --allfontsizes 12"),
+    ("fig4_article", "The exact run for reproducing Fig.4 in the article.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots --allfontsizes 12"),
 
 ]
 setcount = 1

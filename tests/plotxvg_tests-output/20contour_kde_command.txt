@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	gmx_files/2dproj_PC1_PC2.xvg
 Command:
-	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -showdots -allfs 12 -save plotxvg_tests-output/20contour_kde.pdf -noshow
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -showdots -save plotxvg_tests-output/20contour_kde.pdf -noshow

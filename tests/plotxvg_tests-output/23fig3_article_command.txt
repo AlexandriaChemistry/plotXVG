@@ -1,6 +1,6 @@
 Description:
 	The exact run for reproducing Fig.3 in the article.
 File(s) used:
-	other_files/openmm.csv
+	other_files/test_normaldist.xvg
 Command:
-	plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -axfs 38 -ls solid -save plotxvg_tests-output/23fig3_article.pdf -noshow
+	plotxvg -f other_files/test_normaldist.xvg -heatmap -cmap inferno --allfontsizes 12 -save plotxvg_tests-output/23fig3_article.pdf -noshow

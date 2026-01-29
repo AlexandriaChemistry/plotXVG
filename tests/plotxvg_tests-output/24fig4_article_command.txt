@@ -1,0 +1,6 @@
+Description:
+	The exact run for reproducing Fig.4 in the article.
+File(s) used:
+	gmx_files/2dproj_PC1_PC2.xvg
+Command:
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -showdots --allfontsizes 12 -save plotxvg_tests-output/24fig4_article.pdf -noshow
