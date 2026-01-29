@@ -78,7 +78,7 @@ plotxvg -f other_files/ammonium#chloride.xvg -legend_x 0.68 \
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/05move_legendbox.pdf}
-    \caption{Moving the legendbox to the right. Moving the box up and down can be done similarly with -legend\_y.}
+    \caption{Moving the legendbox to the right. Can also be done along the y-axis.}
     \label{fig:05}
 \end{figure}
 
@@ -289,8 +289,8 @@ plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
 
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
-plotxvg -f other_files/test_normaldist.xvg -heatmap -allfs \
-		12 -save plotxvg_tests-output/19heatmap.pdf -noshow
+plotxvg -f other_files/test_normaldist.xvg -heatmap -save \
+		plotxvg_tests-output/19heatmap.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
@@ -303,8 +303,8 @@ plotxvg -f other_files/test_normaldist.xvg -heatmap -allfs \
 Command for Fig. \ref{fig:20}:
 \begin{verbatim}
 plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde \
-		-showdots -allfs 12 -save \
-		plotxvg_tests-output/20contour_kde.pdf -noshow
+		-showdots -save plotxvg_tests-output/20contour_kde.pdf \
+		-noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
@@ -317,10 +317,8 @@ plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde \
 Command for Fig. \ref{fig:21}:
 \begin{verbatim}
 plotxvg -f gmx_files/rmsd_calpha.xvg \
-		gmx_files/temp_press.xvg gmx_files/gyrate.xvg \
-		gmx_files/rmsf_residues.xvg -ls solid solid solid solid \
-		dotted dashdot dashed None -mk None None None o + x ^ + \
-		-panels -allfs 6 -save \
+		gmx_files/temp_press.xvg --linestyle solid None solid \
+		--marker None . o -panels top --allfontsizes 6 -save \
 		plotxvg_tests-output/21fig1_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
@@ -335,8 +333,9 @@ Command for Fig. \ref{fig:22}:
 \begin{verbatim}
 plotxvg -f act_files/COULOMB-PC-elec.xvg \
 		act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' \
-		'PC+GS-elec' -lfs 18 -eqax -sharelabel -stats -panels side \
-		-save plotxvg_tests-output/22fig2_article.pdf -noshow
+		'PC-elec' 'PC+GS-elec' 'PC+GS-elec' --legendfontsize 18 \
+		--equalaxes -panels side -sharelabel -stats -save \
+		plotxvg_tests-output/22fig2_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
@@ -348,14 +347,28 @@ plotxvg -f act_files/COULOMB-PC-elec.xvg \
 
 Command for Fig. \ref{fig:23}:
 \begin{verbatim}
-plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -axfs 38 \
-		-ls solid -save plotxvg_tests-output/23fig3_article.pdf \
-		-noshow
+plotxvg -f other_files/test_normaldist.xvg -heatmap -cmap \
+		inferno --allfontsizes 12 -save \
+		plotxvg_tests-output/23fig3_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/23fig3_article.pdf}
     \caption{The exact run for reproducing Fig.3 in the article.}
     \label{fig:23}
+\end{figure}
+
+
+Command for Fig. \ref{fig:24}:
+\begin{verbatim}
+plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde \
+		-showdots --allfontsizes 12 -save \
+		plotxvg_tests-output/24fig4_article.pdf -noshow
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/24fig4_article.pdf}
+    \caption{The exact run for reproducing Fig.4 in the article.}
+    \label{fig:24}
 \end{figure}
 
