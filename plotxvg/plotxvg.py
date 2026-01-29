@@ -613,7 +613,7 @@ class DataSet:
         cbar.set_label("Free Energy (kJ/mol)", fontsize=args.axislabelfontsize+args.allfontsizes, labelpad=10)
         cbar.ax.tick_params(labelsize=args.tickfontsize+args.allfontsizes)
 
-        if args.kde and args.showdots:
+        if args.showdots:
             thisax.plot(self.dataset[setcount].x, self.dataset[setcount].y, markersize=args.markersize,
                         label=mylegend, linestyle="None", marker="o", color="white", markeredgecolor="black", markeredgewidth=args.markeredgewidth)
 
