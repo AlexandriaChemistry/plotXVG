@@ -33,11 +33,13 @@ To use plotXVG, simply type `plotxvg -f <filename>.xvg` in the command line and 
 Default setting is a scatterplot, if you want to generate a lineplot, add the linestyle flag along with a line argument, such as `-ls solid`. 
 
 In order to use plotXVG in an API, the general call in a python environment looks like this:
-´´´
+```
 import plotxvg
 
-plotxvg.plot(["file1.xvg", "file2.xvg"], ls=["solid", "dashed"], panels=True)
-´´´
+plotxvg.plot(["file1.xvg", "file2.xvg"],
+            ls=["solid", "dashed"],
+            panels=True)
+```
 Note that boolean flags not in lists such as panels do not need to be strings.
 
 You can also create 2D density plots using either the ´-contour´ or ´-heatmap´ flag! Additionally, you can utilize SciPy's kde for probability density calculations of datasets with few datapoints. Note that you do not require the SciPy package for using the rest of plotXVG's functions.
