@@ -1,6 +1,6 @@
 Description:
-	This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.
+	This shows the support for OpenMM csv files. -colx takes one argument while -coly can take multiple (Use strings).
 File(s) used:
 	other_files/openmm.csv
 Command:
-	plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid -save plotxvg_tests-output/18openMMfile.pdf -noshow
+	plotxvg -f other_files/openmm.csv -colx 2 -coly 7 -ls solid -save plotxvg_tests-output/18openMMfile.pdf -noshow

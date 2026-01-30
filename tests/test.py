@@ -49,14 +49,14 @@ all_examples = [
 
     ("Alot_of_panels", "This demonstrates the dynamics of the program showing that multiple files can be plotted simultaneously with scaled font and marker sizes. Linestyles and markers can be specified for every dataset but can also be generated automatically typing only one input for ls and mk.", "gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/intra_energies.xvg", "-mk o -ls solid -panels"),
 
-    ("openMMfile", "This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.", "other_files/openmm.csv", "-csvx 2 -csvy 7 -ls solid"),
+    ("openMMfile", "This shows the support for OpenMM csv files. -colx takes one argument while -coly can take multiple (Use strings).", "other_files/openmm.csv", "-colx 2 -coly 7 -ls solid"),
 
-    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap -gibbs"),
+    ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap -gibbs -cmap inferno"),
     ("contour_kde", "Showcasing the use of matplotlib's contourf and contour and calculation of PDF using kde.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -showdots"),
 
     ("fig1_article", "The exact run for reproducing Fig.1 in the article.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg", "--linestyle solid None solid --marker None . o -panels top --allfontsizes 6"),
     ("fig2_article", "The exact run for reproducing Fig.2 in the article.", "act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg", "-dslegends 'PC-elec' 'PC-elec' 'PC+GS-elec' 'PC+GS-elec' --legendfontsize 18 --equalaxes -panels side -sharelabel -stats"),
-    ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/test_normaldist.xvg", "-heatmap -cmap inferno --allfontsizes 12"),
+    ("fig3_article", "The exact run for reproducing Fig.3 in the article.", "other_files/SL_posteriors.dat", "-heatmap -cmap rainbow --allfontsizes 12"),
     ("fig4_article", "The exact run for reproducing Fig.4 in the article.", "gmx_files/2dproj_PC1_PC2.xvg", "-contour -kde -gibbs -showdots --allfontsizes 12"),
 
 ]
