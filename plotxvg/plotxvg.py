@@ -944,7 +944,7 @@ def plot(filenames, **kwargs):
         if args.panels:
             print("Only one file in input. Will ignore -panels command")
         if args.squarefig:
-            xframe = args.squarefig
+            xframe = args.xframe
             yframe = xframe
         else:
             xframe = args.xframe
