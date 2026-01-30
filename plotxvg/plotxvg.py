@@ -274,7 +274,7 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                     if new_label not in labels["ylabel"]:
                         labels["ylabel"] = labels["ylabel"]+", "+new_label
                     legends.append(headers[yl].split('(')[0])
-        
+
         #To store labels and legends from xvg files
         for line in inf:
             nhash = line.find("#")
@@ -685,7 +685,7 @@ class DataSet:
             ycenters = (yedges[:-1] + yedges[1:]) / 2
             X, Y = np.meshgrid(xcenters, ycenters)
             Z = z.T
-
+        Z = Z/np.max(Z)
         if args.gibbs:
         #compute gibbs free energy: G = -kBT * log(P)
             kB = 0.00831446 #kJ/molK
