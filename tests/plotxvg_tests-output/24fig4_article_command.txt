@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	gmx_files/2dproj_PC1_PC2.xvg
 Command:
-	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -showdots --allfontsizes 12 -save plotxvg_tests-output/24fig4_article.pdf -noshow
+	plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -gibbs -showdots --allfontsizes 12 -save plotxvg_tests-output/24fig4_article.pdf -noshow

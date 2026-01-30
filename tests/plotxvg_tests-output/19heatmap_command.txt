@@ -3,4 +3,4 @@ Description:
 File(s) used:
 	other_files/test_normaldist.xvg
 Command:
-	plotxvg -f other_files/test_normaldist.xvg -heatmap -save plotxvg_tests-output/19heatmap.pdf -noshow
+	plotxvg -f other_files/test_normaldist.xvg -heatmap -gibbs -save plotxvg_tests-output/19heatmap.pdf -noshow
