@@ -155,7 +155,7 @@ class APIArguments:
         self.showdots = kwargs.get("showdots", False)
 
 def texify(txt:str)->str:
-    return txt.replace("\\S", "$^{").replace("\\s", "$_{").replace("\\N", "}$")
+    return txt.replace("\\S", "$^{").replace("\\s", "$_{").replace("\\N", "}$") if txt.find("$") < 0 else txt
 
 def version(): #triggered in api operation
     print("plotXVG version %s. MatPlotLib version %s" %
