@@ -48,7 +48,7 @@ Both long and short flag names are supported, just like in the CLI.
 Note that boolean flags do not need to be strings.
 
 \subsection{Creating Heatmaps}
-Creating heatmaps in order to study for example free energy landscapes is also supported by plotXVG.
+Creating heatmaps in order to study probability densities and create free energy landscapes is also supported by plotXVG.
 To create a heatmap from your data, use the heatmap mode by adding the \texttt{-heatmap} flag:
 \begin{verbatim}
     plotxvg -f file -heatmap
@@ -57,13 +57,13 @@ In the API, simply set the \texttt{heatmap} parameter to \texttt{True}:
 \begin{verbatim}
 plotxvg.plot("file.xvg", heatmap=True)
 \end{verbatim}
-This is particularly useful for visualizing free energy landscapes and other 2D scalar field data. 
+Calculating Gibbs free energy from the density data is done by adding the \texttt{-gibbs} flag.
 Gibbs free energy is calculated with the equation:
 \begin{equation}
-    G = k_{\mathrm{B}}T * \ln (P)
+    G = k_{\mathrm{B}}T * \mathrm{ln}P/P_0
 \end{equation}
-where $k_B$ is the Boltzmann constant, $T$ is the absolute temperature and $P$ is the probability density.
-
+where $P_0$ is the probability corresponding to the most populated bin, which by definition has $G$ = 0,
+$k_\mathrm{B}$ is Boltzmann's constant and $T$ is the absolute temperature which can be specified with a \texttt{--temperature} flag.
 The input file can either contain two columns of raw data, or three columns of 2D data, with the third column being values to be mapped to the color scale. 
 You can also create plots with contour lines instead using the flag \texttt{-contour}. 
 

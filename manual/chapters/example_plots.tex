@@ -276,21 +276,22 @@ plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg \
 
 Command for Fig. \ref{fig:18}:
 \begin{verbatim}
-plotxvg -f other_files/openmm.csv -csvx 2 -csvy 7 -ls solid \
+plotxvg -f other_files/openmm.csv -colx 2 -coly 7 -ls solid \
 		-save plotxvg_tests-output/18openMMfile.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{../tests/plotxvg_tests-output/18openMMfile.pdf}
-    \caption{This shows the support for OpenMM csv files. -csvx takes one argument while -csvy can take multiple.}
+    \caption{This shows the support for OpenMM csv files. -colx takes one argument while -coly can take multiple (Use strings).}
     \label{fig:18}
 \end{figure}
 
 
 Command for Fig. \ref{fig:19}:
 \begin{verbatim}
-plotxvg -f other_files/test_normaldist.xvg -heatmap -save \
-		plotxvg_tests-output/19heatmap.pdf -noshow
+plotxvg -f other_files/test_normaldist.xvg -heatmap -gibbs \
+		-cmap inferno -save plotxvg_tests-output/19heatmap.pdf \
+		-noshow
 \end{verbatim}
 \begin{figure}[H]
     \centering
@@ -347,8 +348,8 @@ plotxvg -f act_files/COULOMB-PC-elec.xvg \
 
 Command for Fig. \ref{fig:23}:
 \begin{verbatim}
-plotxvg -f other_files/test_normaldist.xvg -heatmap -cmap \
-		inferno --allfontsizes 12 -save \
+plotxvg -f other_files/SL_posteriors.dat -heatmap -cmap \
+		rainbow --allfontsizes 12 -save \
 		plotxvg_tests-output/23fig3_article.pdf -noshow
 \end{verbatim}
 \begin{figure}[H]
@@ -361,7 +362,7 @@ plotxvg -f other_files/test_normaldist.xvg -heatmap -cmap \
 
 Command for Fig. \ref{fig:24}:
 \begin{verbatim}
-plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde \
+plotxvg -f gmx_files/2dproj_PC1_PC2.xvg -contour -kde -gibbs \
 		-showdots --allfontsizes 12 -save \
 		plotxvg_tests-output/24fig4_article.pdf -noshow
 \end{verbatim}
