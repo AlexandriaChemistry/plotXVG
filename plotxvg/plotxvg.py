@@ -146,7 +146,7 @@ class APIArguments:
         self.coly = kwargs.get("coly", ["3"])
         self.heatmap = kwargs.get("heatmap", False)
         self.contour = kwargs.get("contour", False)
-        self.cmap = kwargs.get("cmap", "viridis")
+        self.colormap = kwargs.get("colormap", kwargs.get("cmap", "viridis"))
         self.levels = kwargs.get("levels", 15)
         self.bins = kwargs.get("bins", 100)
         self.gibbs = kwargs.get("gibbs", False)
@@ -611,12 +611,12 @@ class DataSet:
         
         if args.contour:
             # Contour plot with filled levels
-            contf = thisax.contourf(X, Y, Z, levels=args.levels, cmap=args.cmap)
+            contf = thisax.contourf(X, Y, Z, levels=args.levels, cmap=args.colormap)
             thisax.contour(X, Y, Z, levels=args.levels, colors='k', alpha=0.7, linewidths=0.5) #adds lines
             plot_obj = contf
         else:
             # Heatmap using pcolormesh 
-            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.cmap, shading='auto', rasterized=True)
+            pcolmesh = thisax.pcolormesh(X, Y, Z, cmap=args.colormap, shading='auto', rasterized=True)
             plot_obj = pcolmesh
 
         # Add Colorbar (needs reference to figure)
