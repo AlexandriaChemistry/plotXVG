@@ -423,7 +423,6 @@ class DataSet:
             elif arglegend:
                 for l in range(len(arglegend)):
                     self.legend.append(texify(arglegend[l]))
-                self.legend.append(texify(arglegend))
             if args.stats:
                 #Fetch the dataset without residual
                 _,_,ori_dataset = read_xvg(args, filenm, False, filelabel)
