@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import math, os, argparse, string
+import copy, math, os, argparse, string
 import tkinter, matplotlib
 import matplotlib.pyplot as plt
 import importlib.metadata
@@ -391,10 +391,14 @@ class DataSet:
         return rmsd, r2
 
     def read(self, args, filenm:str, residual:bool, filelabel:bool, arglegend, setcount):
+        if not os.path.exists(filenm):
+            print(f"File {filenm} does not exist.")
+            return
         try:
             legend, label, dataset = read_xvg(args, filenm, residual, filelabel)
         except Exception as e:
-            print("Error when reading input files:\n", e)
+            print(f"Error {e} when reading input file {filenm}.")
+            return
         if len(dataset) == 0:
             if args.debug:
                 print("File %s has no data" % filenm)
@@ -436,7 +440,7 @@ class DataSet:
                     self.legend[d] = f"{self.legend[d]}, RMSD = {rmsd:.2f}, R\u00b2 = {print_r2}"
 
     def set_extent(self, myax, args):
-        if len(self.dataset) < 1:
+        if None == self.dataset or len(self.dataset) < 1:
             print("Insufficient data points to set extents.")
             return 0, 0, 0, 0
         xxmin = self.dataset[0].xmin
@@ -726,27 +730,34 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
     ymins = []
     ymaxs = []
     for filenumber in range(nfiles):
-        datasets.append(DataSet())
+        newdata = DataSet()
         mylegend = arglegend[total_datasets:] if arglegend[total_datasets:] else None
         if mylegend is not None:
             # Replace None with empty string
             for i in range(len(mylegend)):
                 if mylegend[i] is None:
                     mylegend[i] = ""
-        datasets[-1].read(args, args.filename[filenumber], args.residual,
-                          args.filelabel, mylegend, filenumber)
-        nrdatasets = len(datasets[-1].dataset)
-        total_datasets += nrdatasets
+        newdata.read(args, args.filename[filenumber], args.residual,
+                     args.filelabel, mylegend, filenumber)
+        if hasattr(newdata, 'dataset') and len(newdata.dataset) > 0:
+            nrdatasets = len(newdata.dataset)
+            total_datasets += nrdatasets
 
-        # Shortcut for the current axis
-        thisax = axs.flat[filenumber % numaxs]
-        #Fetch mininmum and maximum values
-        xxmin, xxmax, yymin, yymax = datasets[filenumber].set_extent(thisax, args)
-        xmins.append(xxmin)
-        xmaxs.append(xxmax)
-        ymins.append(yymin)
-        ymaxs.append(yymax)
-    #Save the global x/y minima and maxima respectively
+            # Shortcut for the current axis
+            thisax = axs.flat[filenumber % numaxs]
+            # Fetch mininmum and maximum values
+            xxmin, xxmax, yymin, yymax = newdata.set_extent(thisax, args)
+            xmins.append(xxmin)
+            xmaxs.append(xxmax)
+            ymins.append(yymin)
+            ymaxs.append(yymax)
+            # Finally, add it to the list
+            datasets.append(copy.deepcopy(newdata))
+    # Before we proceed, check whether there are any data sets
+    if total_datasets == 0:
+        print("No datasets could be read, sorry!")
+        return
+    # Save the global x/y minima and maxima respectively
     xxmin = min(xmins)
     xxmax = max(xmaxs)
     yymin = min(ymins)
