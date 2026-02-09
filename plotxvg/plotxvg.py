@@ -703,7 +703,7 @@ class DataSet:
         return X, Y, Z
     #################################
 
-def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
+def process_plot(args, fig, axs, nfiles, ncolumn, nrow)->bool:
 
     rcParams['font.family'] = 'sans-serif'
     rcParams['font.sans-serif'] = [args.fontname]
@@ -756,7 +756,7 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
     # Before we proceed, check whether there are any data sets
     if total_datasets == 0:
         print("No datasets could be read, sorry!")
-        return
+        return False
     # Save the global x/y minima and maxima respectively
     xxmin = min(xmins)
     xxmax = max(xmaxs)
@@ -920,6 +920,7 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow):
         # Print just once!
         fig.savefig(args.save, bbox_inches='tight')
         args.save = None
+    return True
 
 
 def plot(filenames, **kwargs):
@@ -978,9 +979,9 @@ def plot(filenames, **kwargs):
         ani = FuncAnimation(fig, animate, interval=5000)
         plt.show()
     else:
-        process_plot(args, fig, axs, nfiles, ncolumn, nrow)
-    if not args.noshow:
-        plt.show()
+        foundData = process_plot(args, fig, axs, nfiles, ncolumn, nrow)
+        if foundData and not args.noshow:
+            plt.show()
 
 def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
