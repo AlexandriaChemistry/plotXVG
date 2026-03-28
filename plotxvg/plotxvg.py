@@ -1115,6 +1115,7 @@ def plot(filenames, **kwargs):
         foundData = process_plot(args, fig, axs, nfiles, ncolumn, nrow)
         if foundData and not args.noshow:
             plt.show()
+        plt.close(fig)
 
 def main():
     matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
