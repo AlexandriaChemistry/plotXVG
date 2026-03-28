@@ -70,7 +70,7 @@ for name, desc, inp, flags in all_examples:
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow -quiet" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 
@@ -94,3 +94,4 @@ for ex in examples:
         f.write("Command:\n\t" + cmd + "\n")
     setcount += 1
 print("Done.")
+
