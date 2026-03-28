@@ -635,7 +635,7 @@ class DataSet:
         else:
             thisax.set_ylabel(texify(self.labels["ylabel"]), fontsize=args.axislabelfontsize/ncolumn+args.allfontsizes, labelpad=args.axislabelfontsize/ncolumn+args.allfontsizes*0.5)
         # Legend box placement
-        if args.legendfontsize > 0 and len(self.legend) > 0 and len(self.dataset[0].z) == 0: #.z added so that legend ends up being the colorbar legend
+        if args.legendfontsize > 0 and any(self.legend) and len(self.dataset[0].z) == 0: #.z added so that legend ends up being the colorbar legend
             thisax.legend(loc='upper left', bbox_to_anchor=(args.legend_x, args.legend_y), fontsize=args.legendfontsize/ncolumn+args.allfontsizes)
 
     def do_bars(self, thisax, argcolors, idx, total_datasets, setcount, args, group_width):
