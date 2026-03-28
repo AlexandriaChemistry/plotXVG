@@ -1120,12 +1120,12 @@ def plot(filenames, **kwargs):
 
 
 def please_cite():
-    print("""The source code for plotXVG is available at https://github.com/AlexandriaChemistry/plotXVG.
-    
-If you use plotXVG in a scientific publication, please consider citing:
-   M. K. Rosenbaum and D. van der Spoel
-   plotXVG: Batch Generation of Publication-Quality Graphs from GROMACS Output
-   J. Chem. Inf. Model. 2026, 66, 2955-2959, https://doi.org/10.1021/acs.jcim.5c02998""")
+    print("The source code for plotXVG is available at https://github.com/AlexandriaChemistry/plotXVG.")
+    print("")
+    print("If you use plotXVG in a scientific publication, please consider citing:")
+    print("   M. K. Rosenbaum and D. van der Spoel")
+    print("   plotXVG: Batch Generation of Publication-Quality Graphs from GROMACS Output")
+    print("   J. Chem. Inf. Model. 2026, 66, 2955-2959, https://doi.org/10.1021/acs.jcim.5c02998")
 
 
 def main():
