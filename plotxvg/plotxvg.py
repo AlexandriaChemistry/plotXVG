@@ -1145,6 +1145,10 @@ def plot(filenames, **kwargs):
                 fig, axs = plt.subplots(nrow, ncolumn, figsize=(xframe, yframe), constrained_layout=True) #constrained_layout=True usually more recommended than plt.tight_layout()
             else:
                 fig, axs = plt.subplots(ncolumn, nrow, figsize=(xframe, yframe), constrained_layout=True)
+        # Remove empty subplots if there are more subplots than files
+        if nrow * ncolumn > nfiles:
+            for idx in range(nfiles, nrow * ncolumn):
+                fig.delaxes(axs.flat[idx])
     else:
         if args.panels:
             print("Only one file in input. Will ignore -panels command")
