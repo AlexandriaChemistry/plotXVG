@@ -897,6 +897,29 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow, files_per_panel=1)->bool
     yymin = min(ymins)
     yymax = max(ymaxs)
 
+    # Group files by panel and compute per-panel min/max
+    panel_ymins = {}
+    panel_ymaxs = {}
+    panel_xmins = {}
+    panel_xmaxs = {}
+    for filenumber in range(nfiles):
+        panel_idx = filenumber // files_per_panel
+        if panel_idx not in panel_ymins:
+            panel_ymins[panel_idx] = []
+            panel_ymaxs[panel_idx] = []
+            panel_xmins[panel_idx] = []
+            panel_xmaxs[panel_idx] = []
+        panel_ymins[panel_idx].append(ymins[filenumber])
+        panel_ymaxs[panel_idx].append(ymaxs[filenumber])
+        panel_xmins[panel_idx].append(xmins[filenumber])
+        panel_xmaxs[panel_idx].append(xmaxs[filenumber])
+    
+    # Calculate per-panel global limits
+    panel_ymin_global = {k: min(v) for k, v in panel_ymins.items()}
+    panel_ymax_global = {k: max(v) for k, v in panel_ymaxs.items()}
+    panel_xmin_global = {k: min(v) for k, v in panel_xmins.items()}
+    panel_xmax_global = {k: max(v) for k, v in panel_xmaxs.items()}
+
     if args.debug:
         print("Total datasets found: ", total_datasets, "\n")
 
@@ -1010,12 +1033,21 @@ def process_plot(args, fig, axs, nfiles, ncolumn, nrow, files_per_panel=1)->bool
             
         # If x- or ylabels are not the same they should not be scaled together, fetching local minimas and maximas. 
         if args.panels and args.equalaxes == False: #If equalaxes, use global minimas ans maximas
+            panel_index = filenumber // files_per_panel
             if datasets[0].labels.get("xlabel") != datasets[-1].labels.get("xlabel"):
-                xxmin = xmins[filenumber]
-                xxmax = xmaxs[filenumber]
+                xxmin = panel_xmin_global[panel_index]
+                xxmax = panel_xmax_global[panel_index]
+            else:
+                # All files share same xlabel, use panel's combined limits
+                xxmin = panel_xmin_global[panel_index]
+                xxmax = panel_xmax_global[panel_index]
             if datasets[0].labels.get("ylabel") != datasets[-1].labels.get("ylabel"):
-                yymin = ymins[filenumber]
-                yymax = ymaxs[filenumber]
+                yymin = panel_ymin_global[panel_index]
+                yymax = panel_ymax_global[panel_index]
+            else:
+                # All files share same ylabel, use panel's combined limits
+                yymin = panel_ymin_global[panel_index]
+                yymax = panel_ymax_global[panel_index]
 
         # Scale the plot such that the content is visible
         deltax = (xxmax-xxmin)*0.05
@@ -1113,6 +1145,10 @@ def plot(filenames, **kwargs):
                 fig, axs = plt.subplots(nrow, ncolumn, figsize=(xframe, yframe), constrained_layout=True) #constrained_layout=True usually more recommended than plt.tight_layout()
             else:
                 fig, axs = plt.subplots(ncolumn, nrow, figsize=(xframe, yframe), constrained_layout=True)
+        # Remove empty subplots if there are more subplots than files
+        if nrow * ncolumn > nfiles:
+            for idx in range(nfiles, nrow * ncolumn):
+                fig.delaxes(axs.flat[idx])
     else:
         if args.panels:
             print("Only one file in input. Will ignore -panels command")

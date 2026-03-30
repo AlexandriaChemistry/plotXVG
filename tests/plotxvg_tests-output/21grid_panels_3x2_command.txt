@@ -1,0 +1,6 @@
+Description:
+	Six data files distributed over a 3x2 grid (3 rows, 2 columns), resulting in 1 file per panel.
+File(s) used:
+	gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/sasa_total.xvg
+Command:
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/sasa_total.xvg -panels 3x2 -ls solid -save plotxvg_tests-output/21grid_panels_3x2.pdf -noshow -quiet

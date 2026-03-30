@@ -4,4 +4,4 @@ Description:
 File(s) used:
 	gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg
 Command:
-	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg -panels -sharelabel -notitles -ls solid  -save plotxvg_tests-output/06two_panels.pdf -noshow
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg -panels -sharelabel -notitles -ls solid  -save plotxvg_tests-output/06two_panels.pdf -noshow -quiet

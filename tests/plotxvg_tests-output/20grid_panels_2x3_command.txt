@@ -1,0 +1,6 @@
+Description:
+	Five data files distributed over a 2x3 grid (2 rows, 3 columns), with ceil(5/6)=1 file per panel (last panel empty).
+File(s) used:
+	gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg
+Command:
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg -panels 2x3 -ls solid -save plotxvg_tests-output/20grid_panels_2x3.pdf -noshow -quiet

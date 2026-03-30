@@ -1,0 +1,6 @@
+Description:
+	Demonstrates the -nofilelegends flag. File-defined legends are ignored; only user-defined legends from -dslegends are shown.
+File(s) used:
+	act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg
+Command:
+	plotxvg -f act_files/COULOMB-PC-elec.xvg act_files/COULOMB-PC+GS-elec.xvg -dslegends 'PC-elec' 'PC+GS-elec' -nofilelegends -eqax -sharelabel -panels side -save plotxvg_tests-output/10nofilelegends.pdf -noshow -quiet
