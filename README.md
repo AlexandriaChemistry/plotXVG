@@ -11,8 +11,7 @@ This repository provides *plotxvg*, a simple Python tool built on the well-known
 that will generate publication-quality graphics from, for instance, an energy calculation. 
 This will allow users to rapidly and reproducibly generate series of graphics files without programming.
 Obviously, the tool is applicable to any kind of line graph data, not just that from molecular simulations.
-
-The software is described in some more detail in this paper
+The software is described in some more detail in this paper:
 
 Måns K. Rosenbaum and David van der Spoel, *plotXVG: Batch Generation of Publication-Quality Graphs from
 GROMACS Output*, [J. Chem. Inf. Model. **66** (2026) 2955-2959](https://dx.doi.org/10.1021/acs.jcim.5c02998) 
