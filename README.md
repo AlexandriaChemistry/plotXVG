@@ -89,6 +89,11 @@ options:
   -bar, --bar           Make a bar graph
   -noshow, --noshow     Do not show the figure
   -res, --residual      Subtract x from y for all data sets - useful for correlation plots
+  -aver AVERAGE, --average AVERAGE
+                        Output running average over N data points, number must be odd. Default 1
+  -skip SKIP, --skip SKIP
+                        Skip this many data points when plotting. Default 0
+  -paver, --printaver   Print the average and standard deviation of all data sets. Can be combined with -xmin and -xmax
   -fl, --filelabel      Add the filename to the labels in the plot (may yield long labels)
   -logy, --logy         Use a log scale on the Y-axis
   -xmin XMIN, --xmin XMIN
@@ -103,8 +108,9 @@ options:
                         Width of the plot 100 pixels, default 16
   -yframe YFRAME, --yframe YFRAME
                         Height of the plot 100 pixels, default 9
-  -panels [{top,side}], --panels [{top,side}]
-                        Generate different panels to plot in, one file per panel. Add 'side' for side-by side panels.
+  -panels [PANELS], --panels [PANELS]
+                        Generate different panels to plot in, one file per panel. Add 'side' for side-by-side panels. Alternatively, specify 'AxB' (e.g., '1x2') for A rows and B columns, distributing files
+                        evenly across panels.
   -sfx SUBFIGUREX, --subfigureX SUBFIGUREX
                         X position of subfigure label when using panels. Default -0.15
   -sfy SUBFIGUREY, --subfigureY SUBFIGUREY
@@ -112,12 +118,14 @@ options:
   -ign [IGNORE ...], --ignore [IGNORE ...]
                         legends of the series to ignore. Please specify the whole legend label.
   -title TITLE [TITLE ...], --title TITLE [TITLE ...]
-                        User-defined title(s). This flag overwrites pre-defined titles. If the user wants to use user-defined titles and pre-defined titles on different panels, use None
-                        as placeholders for predefnied title panels. If the user wants to remove a specific panel title, put an empty string ''.
+                        User-defined title(s). This flag overwrites pre-defined titles. If the user wants to use user-defined titles and pre-defined titles on different panels, use None as placeholders for
+                        pre-defined title panels. If the user wants to remove a specific panel title, put an empty string ''.
   -notitles, --notitles
                         Remove all titles (Both user-defined and title pre-defined by data.)
   -dslegends [DATASETLEGENDS ...], --datasetlegends [DATASETLEGENDS ...]
                         Set user-defined legends. If legends are already defined in the input file they are combined for each dataset i.e. '<user-defined legend> <pre-defined legend>'.
+  -nofilelegends, --nofilelegends
+                        Ignore legends defined in the input file(s). When combined with -dslegends only the user-defined legends are shown.
   -sharelabel, --sharelabel
                         Show only the x-labels on the last row of plots and the y-labels on the first column of plots (useful if all subplots share the same x- and y-labels)
   -legend_x LEGEND_X, --legend_x LEGEND_X
@@ -126,9 +134,10 @@ options:
                         Put the legend box vertically on this position, default 0.98
   -stats, --stats       Print RMSD and R2 values of datasets (x-axis is reference data and y-axis holds the predicted values)
   -colx COLX, --colx COLX
-                        Choose what x column you would like from for example a csv file. Choose only one column. Default is column 1
+                        Choose what x column you would like from a csv or xvg file. Choose only one column. Default is column 0
   -coly COLY [COLY ...], --coly COLY [COLY ...]
-                        Choose what y column(s) you would like from for example a csv file. Default is column 3
+                        Choose what y column(s) you would like from a csv or xvg file. For xvg files, columns can be specified by integer index, legend name (e.g. EPOT), or series label (e.g. s10). Default
+                        is column 3
   -v, --version         show program's version number and exit
   -heatmap, --heatmap   2D heatmap plot
   -contour, --contour   Contour 2D plot
@@ -144,5 +153,6 @@ options:
   -kde, --kde           Calculate probability density using kernel density estimation (kde). Preferably combined with contour rather than heatmap. OBS! You need the scipy package for this function.
   -showdots, --showdots
                         Choose to show the scattered dots together with kde.
+  -quiet, --quiet       Suppress the citation message at startup
   ```
   
