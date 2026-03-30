@@ -1,0 +1,6 @@
+Description:
+	Demonstrates the AxB grid panels format where A rows and B columns are specified and files are distributed evenly across the subplots. Here 4 files are distributed over a 1x2 grid (2 files per panel).
+File(s) used:
+	gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/intra_energies.xvg gmx_files/temp_press.xvg
+Command:
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/intra_energies.xvg gmx_files/temp_press.xvg -panels 1x2 -ls solid -save plotxvg_tests-output/19grid_panels_1x2.pdf -noshow -quiet

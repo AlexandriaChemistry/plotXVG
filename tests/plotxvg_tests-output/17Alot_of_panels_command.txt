@@ -1,6 +1,0 @@
-Description:
-	This demonstrates the dynamics of the program showing that multiple files can be plotted simultaneously with scaled font and marker sizes. Linestyles and markers can be specified for every dataset but can also be generated automatically typing only one input for ls and mk.
-File(s) used:
-	gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/intra_energies.xvg
-Command:
-	plotxvg -f gmx_files/eigenval.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/rmsd_backbone.xvg gmx_files/rmsd_sidechain.xvg gmx_files/rmsf_residues.xvg gmx_files/sasa_total.xvg gmx_files/intra_energies.xvg -mk o -ls solid -panels -save plotxvg_tests-output/17Alot_of_panels.pdf -noshow

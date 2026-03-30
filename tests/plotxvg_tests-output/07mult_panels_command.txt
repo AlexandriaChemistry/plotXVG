@@ -5,4 +5,4 @@ Description:
 File(s) used:
 	gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg
 Command:
-	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg -ls solid solid solid solid dotted dashdot dashed solid -mk None None None o + x ^ None -panels -tfs 40 -axfs 35 -mksize 20 -mkwidth 4 -save plotxvg_tests-output/07mult_panels.pdf -noshow
+	plotxvg -f gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg -ls solid solid solid solid dotted dashdot dashed solid -mk None None None o + x ^ None -panels -tfs 40 -axfs 35 -mksize 20 -mkwidth 4 -save plotxvg_tests-output/07mult_panels.pdf -noshow -quiet

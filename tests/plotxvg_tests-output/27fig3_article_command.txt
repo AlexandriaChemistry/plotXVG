@@ -1,0 +1,6 @@
+Description:
+	The exact run for reproducing Fig.3 in the article.
+File(s) used:
+	other_files/SL_posteriors.dat
+Command:
+	plotxvg -f other_files/SL_posteriors.dat -heatmap -cmap rainbow --allfontsizes 12 -save plotxvg_tests-output/27fig3_article.pdf -noshow -quiet
