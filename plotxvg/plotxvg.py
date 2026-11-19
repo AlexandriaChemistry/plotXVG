@@ -347,6 +347,17 @@ def read_xvg(args, filename:str, residual:bool=False, filelabel:bool=False):
                 numwords = len(col)
             else:
                 w = line.split()
+                # Lines that are not purely numeric (e.g. stray header text
+                # without a leading '#', or the '&' set separator) must not
+                # be interpreted as data, since they would otherwise create
+                # empty data sets and shift legends, colors and markers.
+                try:
+                    for word in w:
+                        float(word)
+                except ValueError:
+                    if args.debug:
+                        print("Skipping non-numeric line '%s'" % line.strip())
+                    continue
                 if not xvg_col_fixed:
                     # Resolve xvg column selection once, on the first data line.
                     # Detect whether the user supplied explicit column values.
