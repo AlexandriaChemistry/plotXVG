@@ -16,7 +16,11 @@ The software is described in some more detail in this paper:
 Måns K. Rosenbaum and David van der Spoel, *plotXVG: Batch Generation of Publication-Quality Graphs from
 GROMACS Output*, [J. Chem. Inf. Model. **66** (2026) 2955-2959](https://dx.doi.org/10.1021/acs.jcim.5c02998) 
 
-Pip install plotXVG to your **current** python environment by running  
+With conda or mamba, install plotXVG from the channel alexandriachemistry by running
+
+    conda install -c alexandriachemistry -c conda-forge plotxvg
+
+Alternatively, pip install plotXVG to your **current** python environment by running  
   
     python -m pip install plotxvg  
   
