@@ -1,14 +1,33 @@
 import os
 from pathlib import Path
 import subprocess
-import shutil, sys
+import argparse, shutil, sys
 #Check if the user has installed plotxvg first
 if shutil.which("plotxvg") == None:
    sys.exit("Please install plotxvg first")
 
 plotxvg_cmd = "plotxvg"
 
-outputdir = Path("plotxvg_tests-output")
+# Usage: python test.py [output directory] [-format pdf|png]
+# The default output directory is plotxvg_tests-output next to this script.
+# The commands are run from the directory of this script, since the input
+# files are given relative to it.
+parser = argparse.ArgumentParser(description="Run all plotxvg examples")
+parser.add_argument("outputdir", nargs="?", default=None, help="Output directory, default plotxvg_tests-output next to this script")
+parser.add_argument("-format", "--format", choices=["pdf", "png"], default="pdf", help="File format of the plots, png is used for comparing with reference images")
+cliargs = parser.parse_args()
+ext = cliargs.format
+# For comparing with the reference images the plots must not depend on
+# the fonts installed, so then all text uses DejaVu Sans, which comes with
+# matplotlib. Being last on the command line, it overrides other -font flags.
+fontflag = ' -font "DejaVu Sans"' if ext == "png" else ""
+scriptdir = Path(__file__).resolve().parent
+if cliargs.outputdir:
+    outputpath = Path(cliargs.outputdir).resolve()
+else:
+    outputpath = scriptdir / "plotxvg_tests-output"
+os.chdir(scriptdir)
+outputdir = Path(os.path.relpath(outputpath, scriptdir))
 outputdir.mkdir(parents=True, exist_ok=True)
 
 #Define examples of using the flags in a list of dictionaries
@@ -17,7 +36,8 @@ examples = [
         "name":"default",
         "description":"This plot is created without flags. Default setting is to make a scatterplot.",
         "inputfile":"gmx_files/rmsd_calpha.xvg",
-        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.pdf -noshow"
+        "output":outputdir/f"00default.{ext}",
+        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.{ext} -noshow{fontflag}"
     }
 ]
 
@@ -73,21 +93,29 @@ for name, desc, inp, flags in all_examples:
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow -quiet" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "output": outputdir/f"{setcount:02d}{name}.{ext}",
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.{ext} -noshow -quiet{fontflag}" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 
 # Run plotxvg with all the examples
-setcount = 0
-for ex in examples:
+failed = []
+for setcount, ex in enumerate(examples):
     print(f"Generating {ex['name']}")
     cmd = ex["cmd"]
-    
+    output = ex["output"]
+    # Remove old output so that a stale file cannot hide a failure
+    output.unlink(missing_ok=True)
+
     # Run command
-    try:
-        subprocess.run(cmd, shell=True, check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to run {cmd}:\n{e}")
+    result = subprocess.run(cmd, shell=True)
+    if result.returncode != 0:
+        print(f"Failed to run {cmd}: exit code {result.returncode}")
+        failed.append(ex["name"])
+        continue
+    if not output.is_file() or output.stat().st_size == 0:
+        print(f"Running {cmd} did not produce {output}")
+        failed.append(ex["name"])
         continue
 
     # Save command text
@@ -95,6 +123,8 @@ for ex in examples:
         f.write("Description:\n\t" + ex["description"] + "\n")
         f.write("File(s) used:\n\t" + ex["inputfile"] + "\n")
         f.write("Command:\n\t" + cmd + "\n")
-    setcount += 1
-print("Done.")
 
+if failed:
+    print(f"{len(failed)} of {len(examples)} examples failed: {', '.join(failed)}")
+    sys.exit(1)
+print(f"Done. All {len(examples)} examples succeeded.")

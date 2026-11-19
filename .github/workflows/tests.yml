@@ -1,0 +1,74 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  examples:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.10", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    env:
+      # Plot without a display
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install plotxvg
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+      - name: Smoke test
+        run: |
+          plotxvg -v
+          python -c "import tkinter, plotxvg"
+      - name: Run all examples
+        working-directory: tests
+        run: python test.py ci-output
+      - name: Upload plots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: tests/ci-output/
+          retention-days: 14
+
+  # Compare the plots with reference images. Package versions change the
+  # rendering, so this is done with pinned versions only (the fonts are
+  # fixed by test.py). The plots and difference images are uploaded; the
+  # plots can also be used to create or update tests/reference_images.
+  images:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install plotxvg with pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tests/requirements-images.txt
+          python -m pip install .
+      - name: Make PNG plots
+        working-directory: tests
+        run: python test.py png-output -format png
+      - name: Compare with reference images
+        working-directory: tests
+        run: python compare_images.py png-output
+      - name: Upload plots and differences
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: images-actual
+          path: tests/png-output/*.png
+          retention-days: 14
