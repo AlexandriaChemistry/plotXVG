@@ -1,0 +1,83 @@
+name: PyPI package
+# Builds the sdist and wheel of plotxvg and publishes them on PyPI.
+# Pull requests that change the package only build and check them. A tag v*
+# publishes them; a run by hand publishes the release whose tag is given.
+# Publishing uses PyPI trusted publishing, without a token: the project on
+# pypi.org must have this repository, the workflow pypi.yml and the
+# environment pypi as a trusted publisher.
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    paths:
+      - "plotxvg/**"
+      - "pyproject.toml"
+      - "README.md"
+      - "LICENSE"
+      - ".github/workflows/pypi.yml"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag of the release to publish, e.g. v1.3.0"
+        type: string
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # The tag to build: the pushed tag, the one given by hand, or none
+      TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || (github.ref_type == 'tag' && github.ref_name || '') }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ env.TAG || github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check the version
+        run: |
+          project=$(sed -n 's/^version = "\(.*\)"$/\1/p' pyproject.toml)
+          echo "pyproject.toml ${project}, tag ${TAG:-none}"
+          if [ -n "${TAG}" ] && [ "${TAG}" != "v${project}" ]; then
+            echo "::error::Tag ${TAG} does not match version ${project}"
+            exit 1
+          fi
+      - name: Build the sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          twine check --strict dist/*
+          ls -l dist
+      - name: Test the wheel
+        env:
+          MPLBACKEND: Agg
+        run: |
+          python -m pip install dist/*.whl
+          plotxvg -v
+          plotxvg -f tests/gmx_files/rmsd_calpha.xvg -save test.png -noshow -quiet
+          test -s test.png
+      - name: Keep the files
+        uses: actions/upload-artifact@v7
+        with:
+          name: pypi-dist
+          path: dist/
+
+  publish:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/plotxvg/
+    permissions:
+      # For trusted publishing
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: pypi-dist
+          path: dist/
+      - name: Publish on PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
