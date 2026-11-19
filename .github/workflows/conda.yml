@@ -1,0 +1,78 @@
+name: Conda package
+# Builds the noarch conda package plotxvg with the recipe in conda/.
+# Pull requests that change the recipe or the package only build and test
+# it. A tag v* uploads it to the channel alexandriachemistry on anaconda.org
+# with the label main, a run by hand with the label that is given, dev by
+# default. The upload needs the repository secret ANACONDA_API_TOKEN.
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    paths:
+      - "conda/**"
+      - "plotxvg/**"
+      - "pyproject.toml"
+      - ".github/workflows/conda.yml"
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: "Upload the package to anaconda.org"
+        type: boolean
+        default: false
+      label:
+        description: "Label of the uploaded package"
+        type: string
+        default: "dev"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Inside the workspace, since upload-artifact refuses paths with ..
+      CONDA_OUT: ${{ github.workspace }}/conda-out
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check the version
+        run: |
+          recipe=$(sed -n 's/^  version: "\(.*\)"$/\1/p' conda/recipe.yaml)
+          project=$(sed -n 's/^version = "\(.*\)"$/\1/p' pyproject.toml)
+          echo "recipe ${recipe}, pyproject.toml ${project}"
+          if [ -z "${recipe}" ] || [ "${recipe}" != "${project}" ]; then
+            echo "::error::The version in conda/recipe.yaml (${recipe}) differs from pyproject.toml (${project})"
+            exit 1
+          fi
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "${GITHUB_REF_NAME}" != "v${project}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match version ${project}"
+            exit 1
+          fi
+      - uses: conda-incubator/setup-miniconda@v4
+        with:
+          auto-update-conda: true
+          channels: conda-forge
+          conda-remove-defaults: "true"
+      - name: Install rattler-build and anaconda-client
+        shell: bash -el {0}
+        run: |
+          conda install rattler-build anaconda-client
+          rattler-build --version
+      - name: Build and test
+        shell: bash -el {0}
+        run: |
+          rattler-build build --recipe conda/recipe.yaml --channel conda-forge \
+                              --output-dir ${CONDA_OUT}
+          ls -l ${CONDA_OUT}/noarch/*.conda
+      - name: Keep the package
+        uses: actions/upload-artifact@v7
+        with:
+          name: conda-noarch
+          path: ${{ env.CONDA_OUT }}/noarch/*.conda
+      - name: Upload to anaconda.org
+        if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.upload)
+        shell: bash -el {0}
+        env:
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          LABEL: ${{ startsWith(github.ref, 'refs/tags/v') && 'main' || inputs.label }}
+        run: |
+          anaconda upload --user alexandriachemistry --label ${LABEL} --skip-existing \
+                   ${CONDA_OUT}/noarch/*.conda

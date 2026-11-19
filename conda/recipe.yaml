@@ -1,0 +1,76 @@
+# Recipe for the conda package plotxvg on the channel alexandriachemistry,
+# built with rattler-build from the top of the repository:
+#
+#   rattler-build build --recipe conda/recipe.yaml --channel conda-forge
+#
+# The source is this repository (files ignored by git are skipped). The
+# workflow .github/workflows/conda.yml builds the package and uploads it; it
+# checks that the version below is the one in pyproject.toml.
+
+context:
+  version: "1.3.0"
+  # The oldest Python with all dependencies on conda-forge
+  python_min: "3.11"
+
+package:
+  name: plotxvg
+  version: ${{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - plotxvg = plotxvg.cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.0
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base >=3.7.0
+    - numpy >=1.24.1
+    - scipy >=1.15.3
+
+tests:
+  - python:
+      imports:
+        - plotxvg
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      env:
+        MPLBACKEND: Agg
+      content:
+        - plotxvg -h
+        - plotxvg -v
+        # Plot a small data set without a display
+        - printf '@ s0 legend "test"\n0 1\n1 2\n2 1.5\n' > test.xvg
+        - plotxvg -f test.xvg -save test.png -noshow -quiet
+        - test -s test.png
+
+about:
+  homepage: https://github.com/AlexandriaChemistry/plotXVG
+  repository: https://github.com/AlexandriaChemistry/plotXVG
+  documentation: https://github.com/AlexandriaChemistry/plotXVG/tree/main/manual
+  license: GPL-3.0-only
+  license_file: LICENSE
+  summary: Batch generation of publication-quality graphs from GROMACS and other xvg, csv and dat files
+  description: |
+    plotXVG makes publication-quality plots with matplotlib from xvg files
+    as written by GROMACS and the Alexandria Chemistry Toolkit, and from
+    csv and dat files, from the command line or from Python. It supports
+    multiple data sets and panels, bar graphs, error bars, heatmaps and
+    contour plots.
