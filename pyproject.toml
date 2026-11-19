@@ -17,7 +17,7 @@ dependencies = [
   "numpy>=1.24.1",
   "scipy>=1.15.3",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 
 [project.scripts]
 plotxvg = "plotxvg.cli:main"

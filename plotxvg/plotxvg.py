@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import copy, math, os, argparse, re, string
+import copy, math, os, argparse, re, string, sys
 import tkinter, matplotlib
 import matplotlib.pyplot as plt
 import importlib.metadata
@@ -1098,7 +1098,11 @@ def _is_grid_format(panels_str):
 
 
 def plot(filenames, **kwargs):
+    _plot(filenames, **kwargs)
 
+
+def _plot(filenames, **kwargs)->bool:
+    '''Make the plot(s). Returns False if no data could be read.'''
     if isinstance(filenames, str): #If only one file is passed, wrap it in a list
         filenames = [filenames]
 
@@ -1173,11 +1177,13 @@ def plot(filenames, **kwargs):
         
         ani = FuncAnimation(fig, animate, interval=5000)
         plt.show()
+        return True
     else:
         foundData = process_plot(args, fig, axs, nfiles, ncolumn, nrow, files_per_panel)
         if foundData and not args.noshow:
             plt.show()
         plt.close(fig)
+        return foundData
 
 
 def please_cite():
@@ -1190,7 +1196,11 @@ def please_cite():
 
 
 def main():
-    matplotlib.use('TkAgg') #only use this when CLI operated and not API (disrupts notebook)
+    # Use TkAgg only when CLI operated and not API (disrupts notebook), and
+    # only if the user did not choose a backend, e.g. MPLBACKEND=Agg for
+    # running without a display.
+    if "MPLBACKEND" not in os.environ:
+        matplotlib.use('TkAgg')
 
     cliargs = CLIArguments()
 
@@ -1205,8 +1215,10 @@ def main():
         filename = dictargs.pop("filename") #pass filenames separately
 
         try:
-            plot(filename, **dictargs)
-
+            foundData = _plot(filename, **dictargs)
         except Exception as e:
             print("Plotting failed:", e)
+            sys.exit(1)
+        if not foundData:
+            sys.exit(1)
 
