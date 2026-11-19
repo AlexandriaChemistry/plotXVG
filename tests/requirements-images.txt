@@ -1,0 +1,5 @@
+# Pinned versions for comparing plots with the reference images in
+# reference_images/. Update the references when changing these.
+matplotlib==3.11.2
+numpy==2.5.5
+scipy==1.18.1

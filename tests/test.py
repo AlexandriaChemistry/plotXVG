@@ -1,20 +1,25 @@
 import os
 from pathlib import Path
 import subprocess
-import shutil, sys
+import argparse, shutil, sys
 #Check if the user has installed plotxvg first
 if shutil.which("plotxvg") == None:
    sys.exit("Please install plotxvg first")
 
 plotxvg_cmd = "plotxvg"
 
-# Usage: python test.py [output directory]
+# Usage: python test.py [output directory] [-format pdf|png]
 # The default output directory is plotxvg_tests-output next to this script.
 # The commands are run from the directory of this script, since the input
 # files are given relative to it.
+parser = argparse.ArgumentParser(description="Run all plotxvg examples")
+parser.add_argument("outputdir", nargs="?", default=None, help="Output directory, default plotxvg_tests-output next to this script")
+parser.add_argument("-format", "--format", choices=["pdf", "png"], default="pdf", help="File format of the plots, png is used for comparing with reference images")
+cliargs = parser.parse_args()
+ext = cliargs.format
 scriptdir = Path(__file__).resolve().parent
-if len(sys.argv) > 1:
-    outputpath = Path(sys.argv[1]).resolve()
+if cliargs.outputdir:
+    outputpath = Path(cliargs.outputdir).resolve()
 else:
     outputpath = scriptdir / "plotxvg_tests-output"
 os.chdir(scriptdir)
@@ -27,8 +32,8 @@ examples = [
         "name":"default",
         "description":"This plot is created without flags. Default setting is to make a scatterplot.",
         "inputfile":"gmx_files/rmsd_calpha.xvg",
-        "output":outputdir/"00default.pdf",
-        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.pdf -noshow"
+        "output":outputdir/f"00default.{ext}",
+        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.{ext} -noshow"
     }
 ]
 
@@ -81,8 +86,8 @@ for name, desc, inp, flags in all_examples:
         "name": name,
         "description": desc,
         "inputfile": inp,
-        "output": outputdir/f"{setcount:02d}{name}.pdf",
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.pdf -noshow -quiet" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "output": outputdir/f"{setcount:02d}{name}.{ext}",
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.{ext} -noshow -quiet" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 
