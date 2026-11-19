@@ -17,6 +17,10 @@ parser.add_argument("outputdir", nargs="?", default=None, help="Output directory
 parser.add_argument("-format", "--format", choices=["pdf", "png"], default="pdf", help="File format of the plots, png is used for comparing with reference images")
 cliargs = parser.parse_args()
 ext = cliargs.format
+# For comparing with the reference images the plots must not depend on
+# the fonts installed, so then all text uses DejaVu Sans, which comes with
+# matplotlib. Being last on the command line, it overrides other -font flags.
+fontflag = ' -font "DejaVu Sans"' if ext == "png" else ""
 scriptdir = Path(__file__).resolve().parent
 if cliargs.outputdir:
     outputpath = Path(cliargs.outputdir).resolve()
@@ -33,7 +37,7 @@ examples = [
         "description":"This plot is created without flags. Default setting is to make a scatterplot.",
         "inputfile":"gmx_files/rmsd_calpha.xvg",
         "output":outputdir/f"00default.{ext}",
-        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.{ext} -noshow"
+        "cmd":f"{plotxvg_cmd} -f gmx_files/rmsd_calpha.xvg -save {outputdir}/00default.{ext} -noshow{fontflag}"
     }
 ]
 
@@ -87,7 +91,7 @@ for name, desc, inp, flags in all_examples:
         "description": desc,
         "inputfile": inp,
         "output": outputdir/f"{setcount:02d}{name}.{ext}",
-        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.{ext} -noshow -quiet" #adding noshow flag so that matplotlib doesn't open every single plot during run
+        "cmd": f"{plotxvg_cmd} -f {inp} {flags} -save {outputdir}/{setcount:02d}{name}.{ext} -noshow -quiet{fontflag}" #adding noshow flag so that matplotlib doesn't open every single plot during run
     })
     setcount += 1
 

@@ -41,10 +41,10 @@ jobs:
           path: tests/ci-output/
           retention-days: 14
 
-  # Compare the plots with reference images. Fonts and package versions
-  # change the rendering, so this is done on one platform with pinned
-  # versions only. The plots and difference images are uploaded; the
-  # plots are also used to create or update tests/reference_images.
+  # Compare the plots with reference images. Package versions change the
+  # rendering, so this is done with pinned versions only (the fonts are
+  # fixed by test.py). The plots and difference images are uploaded; the
+  # plots can also be used to create or update tests/reference_images.
   images:
     runs-on: ubuntu-latest
     env:

@@ -5,12 +5,11 @@ Usage:
     python test.py png-output -format png
     python compare_images.py png-output
 
-The reference images in reference_images/ are made on the reference
-platform of the GitHub workflow (ubuntu-latest, Python 3.12 and the
-package versions in requirements-images.txt), since fonts and package
-versions change the rendering. To create or update them, download the
-'images-actual' artifact of a workflow run, check the plots, and copy
-the PNG files into reference_images/.
+The plots must be made with the package versions in
+requirements-images.txt, since other versions can change the rendering.
+In PNG mode test.py uses a font that comes with matplotlib, so the
+installed fonts do not matter. See reference_images/README.md for how to
+create or update the reference images.
 
 For each plot that differs, matplotlib writes a difference image next
 to the plot, named <plot>-failed-diff.png.
