@@ -5,7 +5,7 @@ import tkinter, matplotlib
 import matplotlib.pyplot as plt
 import importlib.metadata
 import numpy as np
-from matplotlib import rcParams
+from matplotlib import rcParams, font_manager
 from matplotlib.animation import FuncAnimation
 import csv
 
@@ -837,10 +837,26 @@ class DataSet:
         return X, Y, Z
     #################################
 
+_missing_fonts = set()
+
+def sans_serif_fonts(fontname:str)->list:
+    '''Return the list of fonts to use. If the requested font is not
+    installed, warn once and use the matplotlib defaults instead, since
+    otherwise matplotlib warns for every piece of text that is drawn.'''
+    try:
+        font_manager.findfont(font_manager.FontProperties(family=fontname),
+                              fallback_to_default=False)
+        return [fontname]
+    except ValueError:
+        if fontname not in _missing_fonts:
+            _missing_fonts.add(fontname)
+            print(f"Font '{fontname}' not found, using the default font instead.")
+        return list(matplotlib.rcParamsDefault['font.sans-serif'])
+
 def process_plot(args, fig, axs, nfiles, ncolumn, nrow, files_per_panel=1)->bool:
 
     rcParams['font.family'] = 'sans-serif'
-    rcParams['font.sans-serif'] = [args.fontname]
+    rcParams['font.sans-serif'] = sans_serif_fonts(args.fontname)
 
     numaxs = axs.size if hasattr(axs, 'size') else 1
 

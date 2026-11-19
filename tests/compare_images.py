@@ -57,7 +57,7 @@ def main():
     # References without a plot mean that an example was removed or renamed
     names = {p.name for p in actuals}
     for expected in sorted(refdir.glob("*.png")):
-        if expected.name not in names:
+        if expected.name not in names and not expected.name.endswith("-failed-diff.png"):
             print(f"{expected.name}: reference image without a plot")
             failed.append(expected.name)
 
