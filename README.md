@@ -128,6 +128,8 @@ options:
                         Ignore legends defined in the input file(s). When combined with -dslegends only the user-defined legends are shown.
   -sharelabel, --sharelabel
                         Show only the x-labels on the last row of plots and the y-labels on the first column of plots (useful if all subplots share the same x- and y-labels)
+  -samex, --samex       Use the same x-axis range in all panels. Default: each panel is scaled to its own data.
+  -samey, --samey       Use the same y-axis range in all panels. Default: each panel is scaled to its own data.
   -legend_x LEGEND_X, --legend_x LEGEND_X
                         Put the legend box horizontally on this position, default 0.02
   -legend_y LEGEND_Y, --legend_y LEGEND_Y
