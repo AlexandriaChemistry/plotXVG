@@ -53,6 +53,8 @@ all_examples = [
     ("grid_panels_2x3", "Five data files distributed over a 2x3 grid (2 rows, 3 columns), with ceil(5/6)=1 file per panel (last panel empty).", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg", "-panels 2x3 -ls solid"),
     ("grid_panels_3x2", "Six data files distributed over a 3x2 grid (3 rows, 2 columns), resulting in 1 file per panel.", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg gmx_files/resarea.xvg gmx_files/sasa_total.xvg", "-panels 3x2 -ls solid"),
 
+    ("noncomment_header", "An xvg file with header text lacking a leading '#'. Non-numeric lines are skipped, so legends, colors and markers match the two data sets (issue #73).", "other_files/COULOMB-noncomment-header.xvg", ""),
+
     ("openMMfile", "This shows the support for OpenMM csv files. -colx takes one argument while -coly can take multiple (Use strings).", "other_files/openmm.csv", "-colx 2 -coly 7 -ls solid"),
 
     ("heatmap", "Heatmap of two normal distributions with gibbs free energy calculated by plotxvg.", "other_files/test_normaldist.xvg", "-heatmap -gibbs -cmap inferno"),
