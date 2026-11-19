@@ -64,7 +64,7 @@ tests:
 about:
   homepage: https://github.com/AlexandriaChemistry/plotXVG
   repository: https://github.com/AlexandriaChemistry/plotXVG
-  documentation: https://github.com/AlexandriaChemistry/plotXVG/tree/main/manual
+  documentation: https://alexandriachemistry.github.io/plotXVG/
   license: GPL-3.0-only
   license_file: LICENSE
   summary: Batch generation of publication-quality graphs from GROMACS and other xvg, csv and dat files

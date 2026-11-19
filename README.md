@@ -56,7 +56,7 @@ You can also create 2D density plots using either the ´-contour´ or ´-heatmap
 
 PlotXVG supports a number of flags, shown below.
 
-For more information on installation, usage and a collection of plotXVG examples, you find the manual in the *plotXVG_manual* directory.
+For more information on installation, usage and a collection of plotXVG examples, see the manual at https://alexandriachemistry.github.io/plotXVG/.
 
 ## plotXVG flags
 ```
