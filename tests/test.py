@@ -30,6 +30,7 @@ all_examples = [
     ("move_legendbox", "Moving the legendbox to the right. Can also be done along the y-axis.", "other_files/ammonium#chloride.xvg", "-legend_x 0.68"),
 
     ("two_panels", "Using the panels flag, along with -notitles. Also note -sharelabel, which removes axis labels except for the first column and the last row.\n\tSuitable if all subplots shares the same axis labels.", "gmx_files/rmsd_calpha.xvg gmx_files/rmsd_sidechain.xvg", "-panels -sharelabel -notitles -ls solid "),
+    ("panels_samey", "By default each panel is scaled to its own data. With -samey (and/or -samex) all panels use the same y-axis (x-axis) range.", "gmx_files/rmsd_calpha.xvg gmx_files/eigenval.xvg", "-panels -samey -ls solid"),
     ("mult_panels", "Panels that shows differently expressed data, such as two with lines and two with markers.\n\tFont- line- or marker-sizing are dynamic based on the number of subplot columns, but specified at will, by \n\tfor example adding -mksize 20 -mkwidth 4 in a subplot of two columns.", "gmx_files/rmsd_calpha.xvg gmx_files/temp_press.xvg gmx_files/gyrate.xvg gmx_files/potential_energy.xvg", "-ls solid solid solid solid dotted dashdot dashed solid -mk None None None o + x ^ None -panels -tfs 40 -axfs 35 -mksize 20 -mkwidth 4"),
 
     ("colors","A custom choice of colors. Colors defined by the user will be applied to the datasets in order. \n\tIf there are more datasets than color inputs, default colors will be used.", "gmx_files/intra_energies.xvg", "-colors green purple red"),
