@@ -1,0 +1,5 @@
+# For building the manual with Sphinx, see README.md in this directory
+sphinx>=7.2.6
+sphinx_rtd_theme>=2.0.0
+sphinx-argparse>=0.5.2
+sphinx-copybutton

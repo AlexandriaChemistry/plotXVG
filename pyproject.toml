@@ -23,7 +23,7 @@ requires-python = ">=3.10"
 plotxvg = "plotxvg.cli:main"
 
 [tool.setuptools.packages.find]
-exclude = ["manual", "tests"]
+exclude = ["docs", "tests"]
 
 [project.urls]
 Homepage = "https://github.com/AlexandriaChemistry/plotXVG"
