@@ -29,7 +29,8 @@ jobs:
       - name: Smoke test
         run: |
           plotxvg -v
-          python -c "import tkinter, plotxvg"
+          # plotxvg must not need Tk, which needs X11 on Linux
+          python -c "import sys, plotxvg; assert 'tkinter' not in sys.modules"
       - name: Run all examples
         working-directory: tests
         run: python test.py ci-output
